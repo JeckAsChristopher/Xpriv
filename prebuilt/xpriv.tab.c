@@ -76,9 +76,10 @@
 
 void yyerror(const char *s);
 int yylex(void);
+
 int root_required = 0;
 
-#line 82 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 83 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -523,8 +524,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    31,    38,    41,    43,    47,    48,    49,
-      50,    54,    60,    61,    65,    77,    78,    79,    90,    96
+       0,    30,    30,    34,    43,    46,    48,    52,    53,    54,
+      55,    59,    71,    72,    76,    95,    96,    97,   107,   116
 };
 #endif
 
@@ -1101,97 +1102,114 @@ yyreduce:
   switch (yyn)
     {
   case 3: /* requires_block: REQUIRES ROOT  */
-#line 31 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 34 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
                     {
-        root_required = 1;
-        if (geteuid() != 0) {
-            fprintf(stderr, "Error: Permission denied. Do Root installed on your device?\n");
-            exit(1);
-        }
+          root_required = 1;
+          if (geteuid() != 0) {
+              fprintf(stderr, "Error: This program requires root privileges.\n");
+              exit(EXIT_FAILURE);
+          } else {
+              printf("Root privilege confirmed.\n");
+          }
       }
-#line 1113 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1116 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 11: /* var_decl: LET IDENT ASSIGN expr  */
-#line 54 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 59 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
                           {
-        printf("var %s = %s\n", (yyvsp[-2].str), (yyvsp[0].str));
+        if ((yyvsp[-2].str) && (yyvsp[0].str)) {
+            printf("var %s = %s\n", (yyvsp[-2].str), (yyvsp[0].str));
+        } else {
+            fprintf(stderr, "Error: Invalid variable declaration.\n");
+        }
+        free((yyvsp[-2].str));
+        free((yyvsp[0].str));
     }
-#line 1121 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1130 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 12: /* expr: STRING  */
-#line 60 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 71 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
              { (yyval.str) = (yyvsp[0].str); }
-#line 1127 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1136 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 13: /* expr: IDENT  */
-#line 61 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
-             { (yyval.str) = (yyvsp[0].str); }
-#line 1133 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 72 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+             { (yyval.str) = strdup((yyvsp[0].str)); free((yyvsp[0].str)); }
+#line 1142 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 14: /* syscall_stmt: SYSCALL IDENT LPAREN syscall_args RPAREN  */
-#line 65 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 76 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
                                              {
+        if (!root_required) {
+            fprintf(stderr, "Error: 'syscall' requires 'requires root' declaration.\n");
+            exit(EXIT_FAILURE);
+        }
         char cmd[512];
         snprintf(cmd, sizeof(cmd), "%s %s", (yyvsp[-3].str), (yyvsp[-1].str) ? (yyvsp[-1].str) : "");
         int result = system(cmd);
         if (result != 0) {
-            fprintf(stderr, "Error: syscall '%s' failed.\n", cmd);
+            fprintf(stderr, "syscall failed: %s\n", cmd);
+        } else {
+            printf("syscall executed: %s\n", cmd);
         }
+        free((yyvsp[-3].str));
         if ((yyvsp[-1].str)) free((yyvsp[-1].str));
     }
-#line 1147 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1163 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 15: /* syscall_args: %empty  */
-#line 77 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
-                  { (yyval.str) = NULL; }
-#line 1153 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 95 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+                  { (yyval.str) = strdup(""); }
+#line 1169 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 16: /* syscall_args: expr  */
-#line 78 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
-                  { (yyval.str) = strdup((yyvsp[0].str)); }
-#line 1159 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 96 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+                  { (yyval.str) = strdup((yyvsp[0].str)); free((yyvsp[0].str)); }
+#line 1175 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 17: /* syscall_args: expr COMMA expr  */
-#line 79 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 97 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
                       {
         size_t len = strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2;
-        char *combined = (char*)malloc(len);
-        if (combined) {
-            snprintf(combined, len, "%s %s", (yyvsp[-2].str), (yyvsp[0].str));
-        }
+        char *combined = malloc(len);
+        snprintf(combined, len, "%s %s", (yyvsp[-2].str), (yyvsp[0].str));
         (yyval.str) = combined;
+        free((yyvsp[-2].str)); free((yyvsp[0].str));
     }
-#line 1172 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1187 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 18: /* print_stmt: PRINT LPAREN expr RPAREN  */
-#line 90 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 107 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
                              {
-        printf("%s\n", (yyvsp[-1].str));
+        if ((yyvsp[-1].str)) {
+            printf("%s\n", (yyvsp[-1].str));
+            free((yyvsp[-1].str));
+        }
     }
-#line 1180 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1198 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 19: /* loop_stmt: LOOP NUMBER TIMES LBRACE statements RBRACE  */
-#line 96 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 116 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
                                                {
         for (int i = 0; i < (yyvsp[-4].num); i++) {
             printf("[loop %d]\n", i + 1);
-            // You can evaluate nested statements here in future enhancements.
+            // Future: Evaluate nested statements here.
         }
     }
-#line 1191 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1209 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
 
-#line 1195 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1213 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
 
       default: break;
     }
@@ -1384,7 +1402,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 104 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 124 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
 
 
 void yyerror(const char *s) {
