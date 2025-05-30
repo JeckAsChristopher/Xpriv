@@ -1,0 +1,3 @@
+/data/data/com.termux/files/home/Xpriv/build/CMakeFiles/xpriv.dir
+/data/data/com.termux/files/home/Xpriv/build/CMakeFiles/edit_cache.dir
+/data/data/com.termux/files/home/Xpriv/build/CMakeFiles/rebuild_cache.dir

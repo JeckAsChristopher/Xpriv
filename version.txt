@@ -1,0 +1,38 @@
+xpriv - Root-Level Execution Language
+Version: v0.3 - First Stable Release
+Release Date: 2025-05-30
+
+-------------------------------------------------
+Description:
+xpriv is a low-level interpreted language designed 
+for root-privileged system tasks. It allows you to 
+declare variables, perform syscalls, loop, and 
+enforce root requirements directly via a clean 
+custom syntax.
+
+-------------------------------------------------
+Key Features:
+- Root permission enforcement via `requires root`
+- Variable declaration using `let IDENT = VALUE`
+- Execute shell commands using `syscall`
+- Inline printing with `print("...")`
+- Repeat blocks with `loop N times { ... }`
+
+-------------------------------------------------
+Changelog:
+v0.3 - First Stable Release:
+- Added root enforcement block
+- Implemented variable declaration syntax
+- Enabled syscall with parameters
+- Introduced print statements
+- Added looping construct with block execution
+- Basic error handling and syntax validation
+- Optimized memory handling for syscall args
+
+-------------------------------------------------
+Authors:
+- Jeck (Lead Developer)
+- ShadowLang Labs (Project Inspiration)
+
+GitHub: https://github.com/JeckAsChristopher/xpriv
+License: MIT
