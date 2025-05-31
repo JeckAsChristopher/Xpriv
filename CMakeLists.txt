@@ -38,6 +38,7 @@ endif()
 
 add_executable(${EXECUTABLE_NAME}
     ${SRC_DIR}/src/main.c
+    ${SRC_DIR}/src/exc/debug.c
     ${FLEX_Lexer_OUTPUTS}
     ${BISON_Parser_OUTPUTS}
 )

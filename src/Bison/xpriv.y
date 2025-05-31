@@ -17,10 +17,12 @@ int root_required = 0;
 
 %token <str> STRING IDENT
 %token <num> NUMBER
-%token REQUIRES ROOT LET SYSCALL PRINT LOOP TIMES
+%token REQUIRES ROOT LET SYSCALL PRINT LOOP TIMES FROM TO WHEN
+%token EQ NEQ LT GT LEQ GEQ
+%token PLUS MINUS MUL DIV
 %token LBRACE RBRACE LPAREN RPAREN COMMA ASSIGN
 
-%type <str> expr syscall_args
+%type <str> expr syscall_args condition
 
 %start program
 
@@ -53,23 +55,61 @@ statement:
     | syscall_stmt
     | print_stmt
     | loop_stmt
+    | conditional_stmt
     ;
 
 var_decl:
     LET IDENT ASSIGN expr {
-        if ($2 && $4) {
-            printf("var %s = %s\n", $2, $4);
-        } else {
-            fprintf(stderr, "Error: Invalid variable declaration.\n");
-        }
-        free($2);
-        free($4);
+        printf("var %s = %s\n", $2, $4);
+        free($2); free($4);
     }
     ;
 
 expr:
       STRING { $$ = $1; }
     | IDENT  { $$ = strdup($1); free($1); }
+    | NUMBER {
+        char buf[32];
+        snprintf(buf, sizeof(buf), "%d", $1);
+        $$ = strdup(buf);
+    }
+    | expr PLUS expr {
+        char *buf = malloc(strlen($1) + strlen($3) + 2);
+        sprintf(buf, "%s+%s", $1, $3);
+        $$ = buf;
+        free($1); free($3);
+    }
+    | expr MINUS expr {
+        char *buf = malloc(strlen($1) + strlen($3) + 2);
+        sprintf(buf, "%s-%s", $1, $3);
+        $$ = buf;
+        free($1); free($3);
+    }
+    | expr MUL expr {
+        char *buf = malloc(strlen($1) + strlen($3) + 2);
+        sprintf(buf, "%s*%s", $1, $3);
+        $$ = buf;
+        free($1); free($3);
+    }
+    | expr DIV expr {
+        char *buf = malloc(strlen($1) + strlen($3) + 2);
+        sprintf(buf, "%s/%s", $1, $3);
+        $$ = buf;
+        free($1); free($3);
+    }
+    | LPAREN expr RPAREN {
+        $$ = strdup($2);
+        free($2);
+    }
+    ;
+
+condition:
+      expr EQ expr   { $$ = strdup("=="); }
+    | expr NEQ expr  { $$ = strdup("!="); }
+    | expr LT expr   { $$ = strdup("<"); }
+    | expr GT expr   { $$ = strdup(">"); }
+    | expr LEQ expr  { $$ = strdup("<="); }
+    | expr GEQ expr  { $$ = strdup(">="); }
     ;
 
 syscall_stmt:
@@ -81,13 +121,8 @@ syscall_stmt:
         char cmd[512];
         snprintf(cmd, sizeof(cmd), "%s %s", $2, $4 ? $4 : "");
         int result = system(cmd);
-        if (result != 0) {
-            fprintf(stderr, "syscall failed: %s\n", cmd);
-        } else {
-            printf("syscall executed: %s\n", cmd);
-        }
-        free($2);
-        if ($4) free($4);
+        printf("syscall %s result: %d\n", cmd, result);
+        free($2); if ($4) free($4);
     }
     ;
 
@@ -106,18 +141,26 @@ syscall_args:
 print_stmt:
     PRINT LPAREN expr RPAREN {
         if ($3) {
-            printf("%s\n", $3);
+            printf("[print]: %s\n", $3);
             free($3);
         }
     }
     ;
 
 loop_stmt:
-    LOOP NUMBER TIMES LBRACE statements RBRACE {
-        for (int i = 0; i < $2; i++) {
-            printf("[loop %d]\n", i + 1);
-            // Future: Evaluate nested statements here.
+    LOOP IDENT FROM NUMBER TO NUMBER LBRACE statements RBRACE {
+        for (int i = $4; i <= $6; i++) {
+            printf("[loop %s=%d]\n", $2, i);
+            // Execute inner block
         }
+        free($2);
+    }
+    ;
+
+conditional_stmt:
+    WHEN condition LBRACE statements RBRACE {
+        printf("[when condition met]\n");
+        // Evaluate and run condition block
     }
     ;
 

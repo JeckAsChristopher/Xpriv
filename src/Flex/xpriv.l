@@ -6,25 +6,41 @@
 
 %%
 
-"requires"          { return REQUIRES; }
-"root"              { return ROOT; }
-"let"               { return LET; }
-"syscall"           { return SYSCALL; }
-"print"             { return PRINT; }
-"loop"              { return LOOP; }
-"times"             { return TIMES; }
-"{"                 { return LBRACE; }
-"}"                 { return RBRACE; }
-"("                 { return LPAREN; }
-")"                 { return RPAREN; }
-","                 { return COMMA; }
-"="                 { return ASSIGN; }
+"requires"      { return REQUIRES; }
+"root"          { return ROOT; }
+"let"           { return LET; }
+"syscall"       { return SYSCALL; }
+"print"         { return PRINT; }
+"loop"          { return LOOP; }
+"from"          { return FROM; }
+"to"            { return TO; }
+"when"          { return WHEN; }
+"=="            { return EQ; }
+"!="            { return NEQ; }
+"<="            { return LEQ; }
+">="            { return GEQ; }
+"<"             { return LT; }
+">"             { return GT; }
 
-[0-9]+              { yylval.num = atoi(yytext); return NUMBER; }
-\"[^\"]*\"          { yylval.str = strdup(yytext); return STRING; }
+"+"             { return PLUS; }
+"-"             { return MINUS; }
+"*"             { return MUL; }
+"/"             { return DIV; }
+
+"{"             { return LBRACE; }
+"}"             { return RBRACE; }
+"("             { return LPAREN; }
+")"             { return RPAREN; }
+","             { return COMMA; }
+"="             { return ASSIGN; }
+
+\"[^\"]*\"      { yylval.str = strdup(yytext); return STRING; }
+[0-9]+          { yylval.num = atoi(yytext); return NUMBER; }
 [a-zA-Z_][a-zA-Z0-9_]* { yylval.str = strdup(yytext); return IDENT; }
 
-[ \t\r\n]+          { }
-.                   { return *yytext; }
+"//".*          { /* ignore single-line comments */ }
+
+[ \t\r\n]+      { /* skip whitespace */ }
+.               { return *yytext; }
 
 %%
