@@ -15,6 +15,12 @@
 "from"          { return FROM; }
 "to"            { return TO; }
 "when"          { return WHEN; }
+"exec"          { return EXEC; }
+"require_bin"   { return REQUIRE_BIN; }
+"env"           { return ENV; }
+"sleep"         { return SLEEP; }
+"exit"          { return EXIT; }
+"as_root"       { return ASROOT; }
 "=="            { return EQ; }
 "!="            { return NEQ; }
 "<="            { return LEQ; }

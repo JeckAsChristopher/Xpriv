@@ -1,1 +1,0 @@
-/data/data/com.termux/files/usr/bin/cc -O2 -g -DNDEBUG -Xlinker --dependency-file=CMakeFiles/xpriv.dir/link.d CMakeFiles/xpriv.dir/src/main.c.o CMakeFiles/xpriv.dir/lex.yy.c.o CMakeFiles/xpriv.dir/xpriv.tab.c.o -o xpriv

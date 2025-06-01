@@ -1,5 +1,5 @@
 xpriv - Root-Level Execution Language
-Version: 0.6 - Add new c files fix syntaxing error.
+Version: 0.7
 Release Date: 2025-05-30
 
 -------------------------------------------------

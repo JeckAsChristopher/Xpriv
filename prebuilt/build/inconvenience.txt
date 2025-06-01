@@ -1,2 +1,0 @@
-Sorry for its only on termux when prebuild
-but as soon as there's contributor who will join me. i will ask to compile executables on different Operating Systems.
