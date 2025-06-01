@@ -25,29 +25,34 @@ BISON_TARGET(Parser
 # Include directories
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${INCLUDE_DIR}                # Include for debug.h
+    ${INCLUDE_DIR}
 )
 
-# Executable name logic
-set(EXECUTABLE_NAME xpriv)
-
+# OS-specific main file logic
 if(WIN32)
-    set(EXECUTABLE_NAME "${EXECUTABLE_NAME}.exe")
-    message(STATUS "Building on Windows, executable will be ${EXECUTABLE_NAME}")
+    set(MAIN_FILE ${SRC_DIR}/src/mains/Windows/windowsmain.c)
+    set(EXECUTABLE_NAME "xpriv.exe")
+    message(STATUS "Building on Windows, using windowsmain.c")
 elseif(APPLE)
-    message(STATUS "Building on macOS")
+    set(MAIN_FILE ${SRC_DIR}/src/mains/Mac-os/macosmain.c)
+    set(EXECUTABLE_NAME "xpriv")
+    message(STATUS "Building on macOS, using macosmain.c")
 elseif(UNIX)
-    message(STATUS "Building on Unix/Linux")
+    set(MAIN_FILE ${SRC_DIR}/src/mains/main.c)
+    set(EXECUTABLE_NAME "xpriv")
+    message(STATUS "Building on Unix/Linux, using main.c")
 else()
-    message(WARNING "Unknown OS, default settings applied")
+    set(MAIN_FILE ${SRC_DIR}/src/mains/main.c)
+    set(EXECUTABLE_NAME "xpriv")
+    message(WARNING "Unknown OS. Defaulting to main.c")
 endif()
 
+# Build the executable
 add_executable(${EXECUTABLE_NAME}
-    ${SRC_DIR}/src/main.c
+    ${MAIN_FILE}
     ${SRC_DIR}/src/etc/debug.c
     ${FLEX_Lexer_OUTPUTS}
     ${BISON_Parser_OUTPUTS}
 )
 
-# Optionally add -DXPRIV_DEBUG if debug mode is needed
 target_compile_definitions(${EXECUTABLE_NAME} PRIVATE XPRIV_DEBUG)
