@@ -1,5 +1,5 @@
 xpriv - Root-Level Execution Language
-Version: 0.7
+Version: 1.0
 Release Date: 2025-05-30
 
 -------------------------------------------------

@@ -16,6 +16,18 @@ extern FILE *yyin;
 #define ENABLE_EXEC_TIMER 1
 #define VERSION "v0.7"
 
+// ANSI color fix for Windows CMD
+void enable_virtual_terminal_processing() {
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (hOut == INVALID_HANDLE_VALUE) return;
+
+    DWORD dwMode = 0;
+    if (!GetConsoleMode(hOut, &dwMode)) return;
+
+    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, dwMode);
+}
+
 #define CLR_RESET   "\033[0m"
 #define CLR_CYAN    "\033[1;36m"
 #define CLR_GREEN   "\033[1;32m"
@@ -43,6 +55,7 @@ int main(int argc, char *argv[]) {
     clock_t start_time = clock();
 #endif
 
+    enable_virtual_terminal_processing();
     print_banner();
 
     if (argc < 2) {
@@ -91,3 +104,6 @@ int main(int argc, char *argv[]) {
 
     return result == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
 }
+
+// Required if using IsUserAnAdmin (shell32.lib)
+#pragma comment(lib, "shell32.lib")
