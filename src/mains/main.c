@@ -12,7 +12,7 @@ extern FILE *yyin;
 
 // --- Config ---
 #define ENABLE_EXEC_TIMER 1
-#define VERSION "v0.7"
+#define VERSION "v1.0"
 
 // --- ANSI Color Macros ---
 #define CLR_RESET   "\033[0m"
