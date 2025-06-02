@@ -1,11 +1,13 @@
-#ifndef XPRIV_DEBUG_H
-#define XPRIV_DEBUG_H
+#ifndef DEBUG_H
+#define DEBUG_H
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <time.h>
+#include <errno.h>
+#include <string.h>
 
-// Error types
 typedef enum {
     ERR_SYNTAX,
     ERR_ROOT_REQUIRED,
@@ -20,11 +22,20 @@ typedef enum {
     ERR_INDEX_OUT_OF_BOUNDS,
     ERR_PERMISSION_DENIED,
     ERR_DIVISION_BY_ZERO,
-    ERR_UNSUPPORTED_FEATURE
+    ERR_UNSUPPORTED_FEATURE,
+    ERR_UNKNOWN
 } ErrorType;
 
-// Error and debug functions
+typedef struct {
+    ErrorType type;
+    char message[512];
+    int code;
+} XPrivError;
+
+extern XPrivError last_error;
+
 void xpriv_error(ErrorType type, const char *fmt, ...);
 void xpriv_debug(const char *tag, const char *fmt, ...);
+const XPrivError* xpriv_get_last_error();
 
-#endif // XPRIV_DEBUG_H
+#endif

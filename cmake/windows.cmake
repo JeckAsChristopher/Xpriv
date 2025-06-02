@@ -1,9 +1,10 @@
-# Paths
+cmake_minimum_required(VERSION 3.10)
+project(xpriv LANGUAGES C CXX)
+
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(INCLUDE_DIR ${SRC_DIR}/include)
 set(ETC_DIR ${SRC_DIR}/etc)
 
-# Flex/Bison setup
 find_package(FLEX REQUIRED)
 find_package(BISON REQUIRED)
 
@@ -17,7 +18,6 @@ BISON_TARGET(Parser ${BISON_FILE} ${GENERATED_DIR}/xpriv.tab.c
 )
 ADD_FLEX_BISON_DEPENDENCY(Lexer Parser)
 
-# Source files
 set(XPRIV_SOURCES
     ${GENERATED_DIR}/lex.yy.c
     ${GENERATED_DIR}/xpriv.tab.c
@@ -25,18 +25,27 @@ set(XPRIV_SOURCES
     ${ETC_DIR}/debug.c
 )
 
-# Include directories
 set(XPRIV_INCLUDE_DIRS
     ${INCLUDE_DIR}
     ${GENERATED_DIR}
 )
 
-# Apply includes
 include_directories(${XPRIV_INCLUDE_DIRS})
 
-# Windows-specific flags or definitions
 if (MSVC)
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)  # suppress unsafe warnings
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 elseif(MINGW)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D__USE_MINGW_ANSI_STDIO=1")
+endif()
+
+add_executable(xpriv ${XPRIV_SOURCES})
+target_include_directories(xpriv PRIVATE ${XPRIV_INCLUDE_DIRS})
+
+if (WIN32)
+    target_link_libraries(xpriv
+        shell32
+        user32
+        advapi32
+    )
+    target_compile_definitions(xpriv PRIVATE XPRIV_WINDOWS)
 endif()

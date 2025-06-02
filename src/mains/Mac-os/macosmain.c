@@ -10,7 +10,7 @@ extern int yyparse(void);
 extern FILE *yyin;
 
 #define ENABLE_EXEC_TIMER 1
-#define VERSION "v1.0"
+#define VERSION "v1.1"
 
 #define CLR_RESET   "\033[0m"
 #define CLR_CYAN    "\033[1;36m"

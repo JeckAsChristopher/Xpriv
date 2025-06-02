@@ -1,48 +1,38 @@
-# xpriv
 
+# xpriv
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Version:** v0.3 - First Stable Release
-**Version:** v0.6 - Fix grammar and syntaxes(and also added new syntaxes and optimized the CLI)
-**Version:** v0.7 - More syntaxes added, Optimized and Enhance error Handling.
-**Version 1.0:** Focusing on Platform-Based all fro cmake and make now updates just coding on make anf cmake to make the software os all compatible.
+**Current Version:** v1.1  
+**Changelog Summary:**
+- v0.3: First Stable Release  
+- v0.6: Grammar fixes, new syntax, CLI optimization  
+- v0.7: More syntax, performance boost  
+- v1.0: OS-global compatibility  
+- v1.1: Added new syntax and grammar improvements
 
 ---
 
 ## 🔐 xpriv: A Minimal Privilege-Based CLI Language
 
-**xpriv** is a minimal, root-aware command-line programming language designed for scripting privileged operations, with built-in syntax for requiring root access, invoking system calls, declaring variables, and running loops.
+**xpriv** is a lightweight, root-aware command-line programming language built for scripting privileged system-level tasks. It's minimal, yet powerful, allowing you to write root/admin-required scripts with a simplified syntax similar to high-level languages.
 
 ---
 
 ## ✨ Features
 
-- 🛡️ `requires root` directive to enforce root-only execution
-- ⚙️ `syscall()` for executing system-level commands
-- 📝 `let` syntax for variable declaration and assignment
-- 🔁 `loop N times` for simple iteration blocks
-- 📤 `print()` for output
-- 🎯 Written in C using Flex (lexer) and Bison (parser)
+- 🛡️ `requires root` or `requires admin` directive to enforce privileged execution
+- ⚙️ `syscall()` for invoking system commands
+- 📝 `let` for variable declaration and assignment
+- 🔁 `loop N times` syntax for iterations
+- 📤 `print()` for console output
+- 💡 Clean, human-readable syntax
+- 🛠️ Written in **C** using **Flex** (lexer) and **Bison** (parser)
 
 ---
 
-## ⚙️ Build Instructions
+## 🚀 Quick Example
 
-You need `cmake`, `flex`, `bison`, and `clang` or `gcc`.
-
-```bash
-pkg install flex bison clang cmake make
-make
-```
-
-## Usage
-```Bash
-./build/xpriv script.xp
-```
-
-## Example Script.xpriv
 ```xpriv
-
 requires root
 
 let cmd = "ls /root"
@@ -57,25 +47,73 @@ loop 3 times {
 
 ---
 
+## 🛠️ Build Instructions
 
-## Inspiration
+### Dependencies (on Termux or Linux):
+```bash
+pkg install flex bison clang cmake make
+```
 
-### This Design is like a low-level programming language. assembly. but this is meant for people who likes high level too much or normal people.
-**This design uses UID 0(ROOT LEVEL ACCESS)**
+### Build the Project
+```bash
+make
+```
 
-> Stay tune for updates. updates always often big or normal
-> This language is updating always. 2-3 weeks if it's big. 1-2 days if only bugs.
+### Run a Script
+```bash
+./build/xpriv script.xpriv
+```
 
 ---
 
-## Contributors
+## 📦 Supported Platforms
 
-**JeckAsChristopher**(Lead Developer)
-> Im the only who create this. but if you want to contribute just ask out!
+| OS            | Architectures Supported                                  |
+|---------------|-----------------------------------------------------------|
+| **Windows**   | x86_64, ARM64, ARM32 (some limitations may apply)         |
+| **Linux**     | x86_64, ARM, AArch64, MIPS, PPC, RISC-V, SPARC, s390x     |
+| **macOS**     | x86_64, Apple Silicon (M1, M2 - ARM64)                    |
+| **Android**   | x86_64, AArch64, x86, armeabi-v7a (via Termux)            |
 
-## Installation
+---
 
-```Bash
-Make
+## 🤔 Why xpriv?
+
+**xpriv** was designed to bridge the power of low-level system access (like assembly/C) with the readability of high-level scripting. Ideal for hackers, sysadmins, or anyone who wants **real root-level scripting power** in a minimal and portable language.
+
+> Uses UID 0 on Unix or `IsUserAnAdmin()` on Windows to verify root/admin.
+
+---
+
+## 💡 Roadmap
+
+- More syntaxes for privilege control
+- File system and memory manipulation features
+- Built-in helper tools for auditing and security
+- Cross-compilation support for embedded systems
+
+---
+
+## 👤 Author & Contributors
+
+**Lead Developer:** JeckAsChristopher  
+> I'm the solo creator, but contributions are welcome! Message me if you'd like to join the development.
+
+---
+
+## 📥 Installation Summary
+
+```bash
+make
+./build/xpriv yourscript.xpriv
 ```
-# Xpriv
+
+---
+
+## 📢 Updates
+
+xpriv receives updates regularly:
+- 🐞 Bugfixes: every 1–2 days
+- 🚀 Major features: every 2–3 weeks
+
+# Stay tuned and star the repo if you're interested in low-level scripting done right!

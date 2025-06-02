@@ -14,7 +14,7 @@ extern FILE *yyin;
 
 // --- Config ---
 #define ENABLE_EXEC_TIMER 1
-#define VERSION "v1.0"
+#define VERSION "v1.1"
 
 // ANSI color fix for Windows CMD
 void enable_virtual_terminal_processing() {
