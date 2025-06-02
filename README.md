@@ -5,6 +5,7 @@
 **Version:** v0.3 - First Stable Release
 **Version:** v0.6 - Fix grammar and syntaxes(and also added new syntaxes and optimized the CLI)
 **Version:** v0.7 - More syntaxes added, Optimized and Enhance error Handling.
+**Version 1.0:** Focusing on Platform-Based all fro cmake and make now updates just coding on make anf cmake to make the software os all compatible.
 
 ---
 
