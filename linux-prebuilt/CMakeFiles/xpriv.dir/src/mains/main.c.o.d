@@ -1,5 +1,5 @@
-CMakeFiles/xpriv.dir/src/main.c.o: \
-  /data/data/com.termux/files/home/Xpriv/src/main.c \
+CMakeFiles/xpriv.dir/src/mains/main.c.o: \
+  /data/data/com.termux/files/home/Xpriv/src/mains/main.c \
   /data/data/com.termux/files/usr/include/stdio.h \
   /data/data/com.termux/files/usr/include/sys/cdefs.h \
   /data/data/com.termux/files/usr/include/android/versioning.h \

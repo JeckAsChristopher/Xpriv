@@ -69,52 +69,25 @@ include CMakeFiles/xpriv.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/xpriv.dir/flags.make
 
-lex.yy.c: /data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[FLEX][Lexer] Building scanner with flex 2.6.4"
-	cd /data/data/com.termux/files/home/Xpriv && /data/data/com.termux/files/usr/bin/flex -o/data/data/com.termux/files/home/Xpriv/build/lex.yy.c /data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l
-
-xpriv.tab.c: /data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[BISON][Parser] Building parser with bison 3.8.2"
-	cd /data/data/com.termux/files/home/Xpriv && /data/data/com.termux/files/usr/bin/bison --defines=/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.h -o /data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c /data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y
+xpriv.tab.c: /data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[BISON][Parser] Building parser with bison 3.8.2"
+	cd /data/data/com.termux/files/home/Xpriv && /data/data/com.termux/files/usr/bin/bison --defines=/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.h -o /data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c /data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y
 
 xpriv.tab.h: xpriv.tab.c
 	@$(CMAKE_COMMAND) -E touch_nocreate xpriv.tab.h
 
+lex.yy.c: /data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[FLEX][Lexer] Building scanner with flex 2.6.4"
+	cd /data/data/com.termux/files/home/Xpriv && /data/data/com.termux/files/usr/bin/flex -o/data/data/com.termux/files/home/Xpriv/build/lex.yy.c /data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l
+
 CMakeFiles/xpriv.dir/codegen:
 .PHONY : CMakeFiles/xpriv.dir/codegen
 
-CMakeFiles/xpriv.dir/src/main.c.o: CMakeFiles/xpriv.dir/flags.make
-CMakeFiles/xpriv.dir/src/main.c.o: /data/data/com.termux/files/home/Xpriv/src/main.c
-CMakeFiles/xpriv.dir/src/main.c.o: CMakeFiles/xpriv.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/xpriv.dir/src/main.c.o"
-	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/xpriv.dir/src/main.c.o -MF CMakeFiles/xpriv.dir/src/main.c.o.d -o CMakeFiles/xpriv.dir/src/main.c.o -c /data/data/com.termux/files/home/Xpriv/src/main.c
-
-CMakeFiles/xpriv.dir/src/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/xpriv.dir/src/main.c.i"
-	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /data/data/com.termux/files/home/Xpriv/src/main.c > CMakeFiles/xpriv.dir/src/main.c.i
-
-CMakeFiles/xpriv.dir/src/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/xpriv.dir/src/main.c.s"
-	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /data/data/com.termux/files/home/Xpriv/src/main.c -o CMakeFiles/xpriv.dir/src/main.c.s
-
-CMakeFiles/xpriv.dir/src/etc/debug.c.o: CMakeFiles/xpriv.dir/flags.make
-CMakeFiles/xpriv.dir/src/etc/debug.c.o: /data/data/com.termux/files/home/Xpriv/src/etc/debug.c
-CMakeFiles/xpriv.dir/src/etc/debug.c.o: CMakeFiles/xpriv.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/xpriv.dir/src/etc/debug.c.o"
-	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/xpriv.dir/src/etc/debug.c.o -MF CMakeFiles/xpriv.dir/src/etc/debug.c.o.d -o CMakeFiles/xpriv.dir/src/etc/debug.c.o -c /data/data/com.termux/files/home/Xpriv/src/etc/debug.c
-
-CMakeFiles/xpriv.dir/src/etc/debug.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/xpriv.dir/src/etc/debug.c.i"
-	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /data/data/com.termux/files/home/Xpriv/src/etc/debug.c > CMakeFiles/xpriv.dir/src/etc/debug.c.i
-
-CMakeFiles/xpriv.dir/src/etc/debug.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/xpriv.dir/src/etc/debug.c.s"
-	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /data/data/com.termux/files/home/Xpriv/src/etc/debug.c -o CMakeFiles/xpriv.dir/src/etc/debug.c.s
-
 CMakeFiles/xpriv.dir/lex.yy.c.o: CMakeFiles/xpriv.dir/flags.make
 CMakeFiles/xpriv.dir/lex.yy.c.o: lex.yy.c
+CMakeFiles/xpriv.dir/lex.yy.c.o: xpriv.tab.h
 CMakeFiles/xpriv.dir/lex.yy.c.o: CMakeFiles/xpriv.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/xpriv.dir/lex.yy.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/xpriv.dir/lex.yy.c.o"
 	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/xpriv.dir/lex.yy.c.o -MF CMakeFiles/xpriv.dir/lex.yy.c.o.d -o CMakeFiles/xpriv.dir/lex.yy.c.o -c /data/data/com.termux/files/home/Xpriv/build/lex.yy.c
 
 CMakeFiles/xpriv.dir/lex.yy.c.i: cmake_force
@@ -128,7 +101,7 @@ CMakeFiles/xpriv.dir/lex.yy.c.s: cmake_force
 CMakeFiles/xpriv.dir/xpriv.tab.c.o: CMakeFiles/xpriv.dir/flags.make
 CMakeFiles/xpriv.dir/xpriv.tab.c.o: xpriv.tab.c
 CMakeFiles/xpriv.dir/xpriv.tab.c.o: CMakeFiles/xpriv.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/xpriv.dir/xpriv.tab.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/xpriv.dir/xpriv.tab.c.o"
 	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/xpriv.dir/xpriv.tab.c.o -MF CMakeFiles/xpriv.dir/xpriv.tab.c.o.d -o CMakeFiles/xpriv.dir/xpriv.tab.c.o -c /data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c
 
 CMakeFiles/xpriv.dir/xpriv.tab.c.i: cmake_force
@@ -139,20 +112,48 @@ CMakeFiles/xpriv.dir/xpriv.tab.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/xpriv.dir/xpriv.tab.c.s"
 	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c -o CMakeFiles/xpriv.dir/xpriv.tab.c.s
 
+CMakeFiles/xpriv.dir/src/mains/main.c.o: CMakeFiles/xpriv.dir/flags.make
+CMakeFiles/xpriv.dir/src/mains/main.c.o: /data/data/com.termux/files/home/Xpriv/src/mains/main.c
+CMakeFiles/xpriv.dir/src/mains/main.c.o: CMakeFiles/xpriv.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/xpriv.dir/src/mains/main.c.o"
+	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/xpriv.dir/src/mains/main.c.o -MF CMakeFiles/xpriv.dir/src/mains/main.c.o.d -o CMakeFiles/xpriv.dir/src/mains/main.c.o -c /data/data/com.termux/files/home/Xpriv/src/mains/main.c
+
+CMakeFiles/xpriv.dir/src/mains/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/xpriv.dir/src/mains/main.c.i"
+	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /data/data/com.termux/files/home/Xpriv/src/mains/main.c > CMakeFiles/xpriv.dir/src/mains/main.c.i
+
+CMakeFiles/xpriv.dir/src/mains/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/xpriv.dir/src/mains/main.c.s"
+	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /data/data/com.termux/files/home/Xpriv/src/mains/main.c -o CMakeFiles/xpriv.dir/src/mains/main.c.s
+
+CMakeFiles/xpriv.dir/src/etc/debug.c.o: CMakeFiles/xpriv.dir/flags.make
+CMakeFiles/xpriv.dir/src/etc/debug.c.o: /data/data/com.termux/files/home/Xpriv/src/etc/debug.c
+CMakeFiles/xpriv.dir/src/etc/debug.c.o: CMakeFiles/xpriv.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/xpriv.dir/src/etc/debug.c.o"
+	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/xpriv.dir/src/etc/debug.c.o -MF CMakeFiles/xpriv.dir/src/etc/debug.c.o.d -o CMakeFiles/xpriv.dir/src/etc/debug.c.o -c /data/data/com.termux/files/home/Xpriv/src/etc/debug.c
+
+CMakeFiles/xpriv.dir/src/etc/debug.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/xpriv.dir/src/etc/debug.c.i"
+	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /data/data/com.termux/files/home/Xpriv/src/etc/debug.c > CMakeFiles/xpriv.dir/src/etc/debug.c.i
+
+CMakeFiles/xpriv.dir/src/etc/debug.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/xpriv.dir/src/etc/debug.c.s"
+	/data/data/com.termux/files/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /data/data/com.termux/files/home/Xpriv/src/etc/debug.c -o CMakeFiles/xpriv.dir/src/etc/debug.c.s
+
 # Object files for target xpriv
 xpriv_OBJECTS = \
-"CMakeFiles/xpriv.dir/src/main.c.o" \
-"CMakeFiles/xpriv.dir/src/etc/debug.c.o" \
 "CMakeFiles/xpriv.dir/lex.yy.c.o" \
-"CMakeFiles/xpriv.dir/xpriv.tab.c.o"
+"CMakeFiles/xpriv.dir/xpriv.tab.c.o" \
+"CMakeFiles/xpriv.dir/src/mains/main.c.o" \
+"CMakeFiles/xpriv.dir/src/etc/debug.c.o"
 
 # External object files for target xpriv
 xpriv_EXTERNAL_OBJECTS =
 
-xpriv: CMakeFiles/xpriv.dir/src/main.c.o
-xpriv: CMakeFiles/xpriv.dir/src/etc/debug.c.o
 xpriv: CMakeFiles/xpriv.dir/lex.yy.c.o
 xpriv: CMakeFiles/xpriv.dir/xpriv.tab.c.o
+xpriv: CMakeFiles/xpriv.dir/src/mains/main.c.o
+xpriv: CMakeFiles/xpriv.dir/src/etc/debug.c.o
 xpriv: CMakeFiles/xpriv.dir/build.make
 xpriv: CMakeFiles/xpriv.dir/compiler_depend.ts
 xpriv: CMakeFiles/xpriv.dir/link.txt

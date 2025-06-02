@@ -67,7 +67,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 1 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1193,7 +1193,7 @@ yyreduce:
   switch (yyn)
     {
   case 3: /* requires_block: REQUIRES ROOT  */
-#line 37 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 37 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                     {
           root_required = 1;
           if (geteuid() != 0) {
@@ -1207,7 +1207,7 @@ yyreduce:
     break;
 
   case 18: /* var_decl: LET IDENT ASSIGN expr  */
-#line 69 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 69 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                           {
         printf("[var] %s = %s\n", (yyvsp[-2].str), (yyvsp[0].str));
         free((yyvsp[-2].str)); free((yyvsp[0].str));
@@ -1216,19 +1216,19 @@ yyreduce:
     break;
 
   case 19: /* expr: STRING  */
-#line 76 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 76 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
              { (yyval.str) = (yyvsp[0].str); }
 #line 1222 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 20: /* expr: IDENT  */
-#line 77 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 77 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
              { (yyval.str) = strdup((yyvsp[0].str)); free((yyvsp[0].str)); }
 #line 1228 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 21: /* expr: NUMBER  */
-#line 78 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 78 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
              {
         char buf[32];
         snprintf(buf, sizeof(buf), "%d", (yyvsp[0].num));
@@ -1238,7 +1238,7 @@ yyreduce:
     break;
 
   case 22: /* expr: expr PLUS expr  */
-#line 83 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 83 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                      {
         char *buf = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2);
         sprintf(buf, "%s+%s", (yyvsp[-2].str), (yyvsp[0].str));
@@ -1248,7 +1248,7 @@ yyreduce:
     break;
 
   case 23: /* expr: expr MINUS expr  */
-#line 88 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 88 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                       {
         char *buf = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2);
         sprintf(buf, "%s-%s", (yyvsp[-2].str), (yyvsp[0].str));
@@ -1258,7 +1258,7 @@ yyreduce:
     break;
 
   case 24: /* expr: expr MUL expr  */
-#line 93 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 93 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                     {
         char *buf = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2);
         sprintf(buf, "%s*%s", (yyvsp[-2].str), (yyvsp[0].str));
@@ -1268,7 +1268,7 @@ yyreduce:
     break;
 
   case 25: /* expr: expr DIV expr  */
-#line 98 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 98 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                     {
         char *buf = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2);
         sprintf(buf, "%s/%s", (yyvsp[-2].str), (yyvsp[0].str));
@@ -1278,7 +1278,7 @@ yyreduce:
     break;
 
   case 26: /* expr: LPAREN expr RPAREN  */
-#line 103 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 103 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                          {
         (yyval.str) = strdup((yyvsp[-1].str)); free((yyvsp[-1].str));
     }
@@ -1286,43 +1286,43 @@ yyreduce:
     break;
 
   case 27: /* condition: expr EQ expr  */
-#line 109 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 109 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                      { (yyval.str) = strdup("=="); }
 #line 1292 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 28: /* condition: expr NEQ expr  */
-#line 110 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 110 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                      { (yyval.str) = strdup("!="); }
 #line 1298 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 29: /* condition: expr LT expr  */
-#line 111 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 111 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                      { (yyval.str) = strdup("<"); }
 #line 1304 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 30: /* condition: expr GT expr  */
-#line 112 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 112 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                      { (yyval.str) = strdup(">"); }
 #line 1310 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 31: /* condition: expr LEQ expr  */
-#line 113 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 113 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                      { (yyval.str) = strdup("<="); }
 #line 1316 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 32: /* condition: expr GEQ expr  */
-#line 114 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 114 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                      { (yyval.str) = strdup(">="); }
 #line 1322 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 33: /* syscall_stmt: SYSCALL IDENT LPAREN syscall_args RPAREN  */
-#line 118 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 118 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                              {
         if (!root_required) {
             fprintf(stderr, "[error] syscall requires 'requires root'.\n");
@@ -1338,7 +1338,7 @@ yyreduce:
     break;
 
   case 34: /* exec_stmt: EXEC LPAREN expr RPAREN  */
-#line 132 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 132 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                             {
         printf("[exec] running: %s\n", (yyvsp[-1].str));
         int ret = system((yyvsp[-1].str));
@@ -1349,7 +1349,7 @@ yyreduce:
     break;
 
   case 35: /* require_bin_stmt: REQUIRE_BIN LPAREN expr RPAREN  */
-#line 141 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 141 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                    {
         char check[256];
         snprintf(check, sizeof(check), "command -v %s >/dev/null 2>&1", (yyvsp[-1].str));
@@ -1366,7 +1366,7 @@ yyreduce:
     break;
 
   case 36: /* env_stmt: ENV LPAREN expr RPAREN  */
-#line 156 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 156 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                            {
         char *val = getenv((yyvsp[-1].str));
         if (val) {
@@ -1380,7 +1380,7 @@ yyreduce:
     break;
 
   case 37: /* sleep_stmt: SLEEP LPAREN NUMBER RPAREN  */
-#line 168 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 168 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                {
         printf("[sleep] %d seconds\n", (yyvsp[-1].num));
         sleep((yyvsp[-1].num));
@@ -1389,7 +1389,7 @@ yyreduce:
     break;
 
   case 38: /* exit_stmt: EXIT LPAREN NUMBER RPAREN  */
-#line 175 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 175 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                               {
         printf("[exit] code %d\n", (yyvsp[-1].num));
         exit((yyvsp[-1].num));
@@ -1398,7 +1398,7 @@ yyreduce:
     break;
 
   case 39: /* as_root_block: ASROOT LBRACE statements RBRACE  */
-#line 182 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 182 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                     {
         if (geteuid() != 0) {
             fprintf(stderr, "[as_root error] not running as root.\n");
@@ -1410,25 +1410,25 @@ yyreduce:
     break;
 
   case 40: /* print_stmt: PRINT LPAREN expr_list RPAREN  */
-#line 192 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 192 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                   { }
 #line 1416 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 41: /* expr_list: expr  */
-#line 196 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 196 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                   { printf("[print] %s\n", (yyvsp[0].str)); free((yyvsp[0].str)); }
 #line 1422 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 42: /* expr_list: expr_list COMMA expr  */
-#line 197 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 197 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                   { printf("[print] %s\n", (yyvsp[0].str)); free((yyvsp[0].str)); }
 #line 1428 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 43: /* loop_stmt: LOOP IDENT FROM NUMBER TO NUMBER LBRACE statements RBRACE  */
-#line 201 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 201 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                                               {
         for (int i = (yyvsp[-5].num); i <= (yyvsp[-3].num); i++) {
             printf("[loop %s=%d]\n", (yyvsp[-7].str), i);
@@ -1439,7 +1439,7 @@ yyreduce:
     break;
 
   case 44: /* conditional_stmt: WHEN condition LBRACE statements RBRACE  */
-#line 210 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 210 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                             {
         printf("[when] condition stub eval true\n");
     }
@@ -1447,19 +1447,19 @@ yyreduce:
     break;
 
   case 45: /* syscall_args: %empty  */
-#line 216 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 216 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                   { (yyval.str) = strdup(""); }
 #line 1453 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 46: /* syscall_args: expr  */
-#line 217 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 217 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                   { (yyval.str) = strdup((yyvsp[0].str)); free((yyvsp[0].str)); }
 #line 1459 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 47: /* syscall_args: expr COMMA expr  */
-#line 218 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 218 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                       {
         size_t len = strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2;
         char *combined = malloc(len);
@@ -1664,7 +1664,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 227 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 227 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
 
 
 void yyerror(const char *s) {

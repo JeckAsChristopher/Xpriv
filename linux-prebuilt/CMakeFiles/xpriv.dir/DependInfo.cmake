@@ -10,7 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/data/data/com.termux/files/home/Xpriv/build/lex.yy.c" "CMakeFiles/xpriv.dir/lex.yy.c.o" "gcc" "CMakeFiles/xpriv.dir/lex.yy.c.o.d"
   "/data/data/com.termux/files/home/Xpriv/src/etc/debug.c" "CMakeFiles/xpriv.dir/src/etc/debug.c.o" "gcc" "CMakeFiles/xpriv.dir/src/etc/debug.c.o.d"
-  "/data/data/com.termux/files/home/Xpriv/src/main.c" "CMakeFiles/xpriv.dir/src/main.c.o" "gcc" "CMakeFiles/xpriv.dir/src/main.c.o.d"
+  "/data/data/com.termux/files/home/Xpriv/src/mains/main.c" "CMakeFiles/xpriv.dir/src/mains/main.c.o" "gcc" "CMakeFiles/xpriv.dir/src/mains/main.c.o.d"
   "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c" "CMakeFiles/xpriv.dir/xpriv.tab.c.o" "gcc" "CMakeFiles/xpriv.dir/xpriv.tab.c.o.d"
   "" "xpriv" "gcc" "CMakeFiles/xpriv.dir/link.d"
   )

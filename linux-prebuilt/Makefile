@@ -177,29 +177,29 @@ src/etc/debug.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xpriv.dir/build.make CMakeFiles/xpriv.dir/src/etc/debug.c.s
 .PHONY : src/etc/debug.c.s
 
-src/main.o: src/main.c.o
-.PHONY : src/main.o
+src/mains/main.o: src/mains/main.c.o
+.PHONY : src/mains/main.o
 
 # target to build an object file
-src/main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xpriv.dir/build.make CMakeFiles/xpriv.dir/src/main.c.o
-.PHONY : src/main.c.o
+src/mains/main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xpriv.dir/build.make CMakeFiles/xpriv.dir/src/mains/main.c.o
+.PHONY : src/mains/main.c.o
 
-src/main.i: src/main.c.i
-.PHONY : src/main.i
+src/mains/main.i: src/mains/main.c.i
+.PHONY : src/mains/main.i
 
 # target to preprocess a source file
-src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xpriv.dir/build.make CMakeFiles/xpriv.dir/src/main.c.i
-.PHONY : src/main.c.i
+src/mains/main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xpriv.dir/build.make CMakeFiles/xpriv.dir/src/mains/main.c.i
+.PHONY : src/mains/main.c.i
 
-src/main.s: src/main.c.s
-.PHONY : src/main.s
+src/mains/main.s: src/mains/main.c.s
+.PHONY : src/mains/main.s
 
 # target to generate assembly for a file
-src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xpriv.dir/build.make CMakeFiles/xpriv.dir/src/main.c.s
-.PHONY : src/main.c.s
+src/mains/main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xpriv.dir/build.make CMakeFiles/xpriv.dir/src/mains/main.c.s
+.PHONY : src/mains/main.c.s
 
 xpriv.tab.o: xpriv.tab.c.o
 .PHONY : xpriv.tab.o
@@ -240,9 +240,9 @@ help:
 	@echo "... src/etc/debug.o"
 	@echo "... src/etc/debug.i"
 	@echo "... src/etc/debug.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/mains/main.o"
+	@echo "... src/mains/main.i"
+	@echo "... src/mains/main.s"
 	@echo "... xpriv.tab.o"
 	@echo "... xpriv.tab.i"
 	@echo "... xpriv.tab.s"

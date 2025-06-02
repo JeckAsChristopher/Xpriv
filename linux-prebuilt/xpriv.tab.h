@@ -97,7 +97,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 13 "/data/data/com.termux/files/home/Xpriv/src/Bison/xpriv.y"
+#line 13 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
 
     char* str;
     int num;
