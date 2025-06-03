@@ -88,7 +88,27 @@ extern int yydebug;
     LPAREN = 289,                  /* LPAREN  */
     RPAREN = 290,                  /* RPAREN  */
     COMMA = 291,                   /* COMMA  */
-    ASSIGN = 292                   /* ASSIGN  */
+    ASSIGN = 292,                  /* ASSIGN  */
+    FORK = 293,                    /* FORK  */
+    EXECVE = 294,                  /* EXECVE  */
+    KILL = 295,                    /* KILL  */
+    WAIT = 296,                    /* WAIT  */
+    OPEN = 297,                    /* OPEN  */
+    CLOSE = 298,                   /* CLOSE  */
+    READ = 299,                    /* READ  */
+    WRITE = 300,                   /* WRITE  */
+    PIPE = 301,                    /* PIPE  */
+    CHMOD = 302,                   /* CHMOD  */
+    CHOWN = 303,                   /* CHOWN  */
+    MKDIR = 304,                   /* MKDIR  */
+    RMDIR = 305,                   /* RMDIR  */
+    STAT = 306,                    /* STAT  */
+    CONNECT = 307,                 /* CONNECT  */
+    BIND = 308,                    /* BIND  */
+    LISTEN = 309,                  /* LISTEN  */
+    ACCEPT = 310,                  /* ACCEPT  */
+    SOCKET = 311,                  /* SOCKET  */
+    GETENV = 312                   /* GETENV  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -102,7 +122,7 @@ union YYSTYPE
     char* str;
     int num;
 
-#line 106 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.h"
+#line 126 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

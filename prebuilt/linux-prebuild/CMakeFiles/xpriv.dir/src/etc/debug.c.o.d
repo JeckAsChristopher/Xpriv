@@ -53,6 +53,11 @@ CMakeFiles/xpriv.dir/src/etc/debug.c.o: \
   /data/data/com.termux/files/usr/include/linux/wait.h \
   /data/data/com.termux/files/usr/include/malloc.h \
   /data/data/com.termux/files/usr/include/android/legacy_stdlib_inlines.h \
+  /data/data/com.termux/files/usr/include/errno.h \
+  /data/data/com.termux/files/usr/include/linux/errno.h \
+  /data/data/com.termux/files/usr/include/aarch64-linux-android/asm/errno.h \
+  /data/data/com.termux/files/usr/include/asm-generic/errno.h \
+  /data/data/com.termux/files/usr/include/asm-generic/errno-base.h \
   /data/data/com.termux/files/usr/include/time.h \
   /data/data/com.termux/files/usr/include/sys/time.h \
   /data/data/com.termux/files/usr/include/linux/time.h \
@@ -76,9 +81,4 @@ CMakeFiles/xpriv.dir/src/etc/debug.c.o: \
   /data/data/com.termux/files/usr/include/asm-generic/siginfo.h \
   /data/data/com.termux/files/usr/include/sys/ucontext.h \
   /data/data/com.termux/files/usr/include/sys/user.h \
-  /data/data/com.termux/files/usr/include/bits/page_size.h \
-  /data/data/com.termux/files/usr/include/errno.h \
-  /data/data/com.termux/files/usr/include/linux/errno.h \
-  /data/data/com.termux/files/usr/include/aarch64-linux-android/asm/errno.h \
-  /data/data/com.termux/files/usr/include/asm-generic/errno.h \
-  /data/data/com.termux/files/usr/include/asm-generic/errno-base.h
+  /data/data/com.termux/files/usr/include/bits/page_size.h

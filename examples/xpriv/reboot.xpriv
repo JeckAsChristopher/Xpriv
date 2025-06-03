@@ -1,0 +1,5 @@
+requires root
+
+syscall reboot()
+
+// This Doesn't Reboot automatically until you manually execute this script(doesn't work on fake environment os, but vm might still work)

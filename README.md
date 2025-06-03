@@ -2,14 +2,14 @@
 # xpriv
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Current Version:** v1.1  
+**Current Version:** v1.2  
 **Changelog Summary:**
 - v0.3: First Stable Release  
 - v0.6: Grammar fixes, new syntax, CLI optimization  
 - v0.7: More syntax, performance boost  
 - v1.0: OS-global compatibility  
 - v1.1: Added new syntax and grammar improvements
-
+- v1.2: Added new syntaxes(GETENV, SOCKET etc.) **optimize builds**  
 ---
 
 ## 🔐 xpriv: A Minimal Privilege-Based CLI Language

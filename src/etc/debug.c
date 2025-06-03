@@ -1,6 +1,8 @@
 #include "debug.h"
 
-XPrivError last_error;
+static XPrivError last_error;
+static char log_path[256] = "/var/log/xpriv.log";
+static int should_exit_on_error = 1;
 
 static const char* error_type_to_string(ErrorType type) {
     switch (type) {
@@ -23,7 +25,7 @@ static const char* error_type_to_string(ErrorType type) {
 }
 
 static void log_to_file(const char *msg) {
-    FILE *log = fopen("/var/log/xpriv.log", "a");
+    FILE *log = fopen(log_path, "a");
     if (log) {
         fprintf(log, "%s\n", msg);
         fclose(log);
@@ -44,23 +46,36 @@ void xpriv_error(ErrorType type, const char *fmt, ...) {
     va_end(args);
 
     last_error.type = type;
-    last_error.code = type;  // You can map this to custom values if needed.
+    last_error.code = type;
 
     fprintf(stderr, "\033[1;31m%s [ERROR][%s]\033[0m %s", timestamp, prefix, last_error.message);
 
-    // Include errno if applicable
     if (errno != 0) {
         fprintf(stderr, " (errno: %d - %s)", errno, strerror(errno));
     }
 
     fprintf(stderr, "\n");
 
-    // Log to file
     char full_log[1024];
     snprintf(full_log, sizeof(full_log), "%s [ERROR][%s] %s", timestamp, prefix, last_error.message);
     log_to_file(full_log);
 
-    exit(type); // Or use a custom exit code per type
+    if (should_exit_on_error)
+        exit(type);
+}
+
+void xpriv_warn(const char *fmt, ...) {
+    char timestamp[64];
+    time_t now = time(NULL);
+    struct tm *tm_info = localtime(&now);
+    strftime(timestamp, sizeof(timestamp), "[%Y-%m-%d %H:%M:%S]", tm_info);
+
+    fprintf(stderr, "\033[1;33m%s [WARNING]\033[0m ", timestamp);
+    va_list args;
+    va_start(args, fmt);
+    vfprintf(stderr, fmt, args);
+    va_end(args);
+    fprintf(stderr, "\n");
 }
 
 void xpriv_debug(const char *tag, const char *fmt, ...) {
@@ -81,4 +96,15 @@ void xpriv_debug(const char *tag, const char *fmt, ...) {
 
 const XPrivError* xpriv_get_last_error() {
     return &last_error;
+}
+
+void xpriv_set_log_file(const char *path) {
+    if (path && strlen(path) < sizeof(log_path)) {
+        strncpy(log_path, path, sizeof(log_path));
+        log_path[sizeof(log_path)-1] = '\0';
+    }
+}
+
+void xpriv_set_exit_on_error(int value) {
+    should_exit_on_error = value;
 }

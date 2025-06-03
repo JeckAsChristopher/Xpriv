@@ -72,7 +72,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+#include <unistd.h>  // For geteuid() and sleep()
 
 void yyerror(const char *s);
 int yylex(void);
@@ -145,26 +145,46 @@ enum yysymbol_kind_t
   YYSYMBOL_RPAREN = 35,                    /* RPAREN  */
   YYSYMBOL_COMMA = 36,                     /* COMMA  */
   YYSYMBOL_ASSIGN = 37,                    /* ASSIGN  */
-  YYSYMBOL_YYACCEPT = 38,                  /* $accept  */
-  YYSYMBOL_program = 39,                   /* program  */
-  YYSYMBOL_requires_block = 40,            /* requires_block  */
-  YYSYMBOL_statements = 41,                /* statements  */
-  YYSYMBOL_statement = 42,                 /* statement  */
-  YYSYMBOL_var_decl = 43,                  /* var_decl  */
-  YYSYMBOL_expr = 44,                      /* expr  */
-  YYSYMBOL_condition = 45,                 /* condition  */
-  YYSYMBOL_syscall_stmt = 46,              /* syscall_stmt  */
-  YYSYMBOL_exec_stmt = 47,                 /* exec_stmt  */
-  YYSYMBOL_require_bin_stmt = 48,          /* require_bin_stmt  */
-  YYSYMBOL_env_stmt = 49,                  /* env_stmt  */
-  YYSYMBOL_sleep_stmt = 50,                /* sleep_stmt  */
-  YYSYMBOL_exit_stmt = 51,                 /* exit_stmt  */
-  YYSYMBOL_as_root_block = 52,             /* as_root_block  */
-  YYSYMBOL_print_stmt = 53,                /* print_stmt  */
-  YYSYMBOL_expr_list = 54,                 /* expr_list  */
-  YYSYMBOL_loop_stmt = 55,                 /* loop_stmt  */
-  YYSYMBOL_conditional_stmt = 56,          /* conditional_stmt  */
-  YYSYMBOL_syscall_args = 57               /* syscall_args  */
+  YYSYMBOL_FORK = 38,                      /* FORK  */
+  YYSYMBOL_EXECVE = 39,                    /* EXECVE  */
+  YYSYMBOL_KILL = 40,                      /* KILL  */
+  YYSYMBOL_WAIT = 41,                      /* WAIT  */
+  YYSYMBOL_OPEN = 42,                      /* OPEN  */
+  YYSYMBOL_CLOSE = 43,                     /* CLOSE  */
+  YYSYMBOL_READ = 44,                      /* READ  */
+  YYSYMBOL_WRITE = 45,                     /* WRITE  */
+  YYSYMBOL_PIPE = 46,                      /* PIPE  */
+  YYSYMBOL_CHMOD = 47,                     /* CHMOD  */
+  YYSYMBOL_CHOWN = 48,                     /* CHOWN  */
+  YYSYMBOL_MKDIR = 49,                     /* MKDIR  */
+  YYSYMBOL_RMDIR = 50,                     /* RMDIR  */
+  YYSYMBOL_STAT = 51,                      /* STAT  */
+  YYSYMBOL_CONNECT = 52,                   /* CONNECT  */
+  YYSYMBOL_BIND = 53,                      /* BIND  */
+  YYSYMBOL_LISTEN = 54,                    /* LISTEN  */
+  YYSYMBOL_ACCEPT = 55,                    /* ACCEPT  */
+  YYSYMBOL_SOCKET = 56,                    /* SOCKET  */
+  YYSYMBOL_GETENV = 57,                    /* GETENV  */
+  YYSYMBOL_YYACCEPT = 58,                  /* $accept  */
+  YYSYMBOL_program = 59,                   /* program  */
+  YYSYMBOL_requires_block = 60,            /* requires_block  */
+  YYSYMBOL_statements = 61,                /* statements  */
+  YYSYMBOL_statement = 62,                 /* statement  */
+  YYSYMBOL_var_decl = 63,                  /* var_decl  */
+  YYSYMBOL_expr = 64,                      /* expr  */
+  YYSYMBOL_condition = 65,                 /* condition  */
+  YYSYMBOL_syscall_stmt = 66,              /* syscall_stmt  */
+  YYSYMBOL_exec_stmt = 67,                 /* exec_stmt  */
+  YYSYMBOL_require_bin_stmt = 68,          /* require_bin_stmt  */
+  YYSYMBOL_env_stmt = 69,                  /* env_stmt  */
+  YYSYMBOL_sleep_stmt = 70,                /* sleep_stmt  */
+  YYSYMBOL_exit_stmt = 71,                 /* exit_stmt  */
+  YYSYMBOL_as_root_block = 72,             /* as_root_block  */
+  YYSYMBOL_print_stmt = 73,                /* print_stmt  */
+  YYSYMBOL_expr_list = 74,                 /* expr_list  */
+  YYSYMBOL_loop_stmt = 75,                 /* loop_stmt  */
+  YYSYMBOL_conditional_stmt = 76,          /* conditional_stmt  */
+  YYSYMBOL_syscall_args = 77               /* syscall_args  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -492,10 +512,10 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   156
+#define YYLAST   149
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  38
+#define YYNTOKENS  58
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  20
 /* YYNRULES -- Number of rules.  */
@@ -504,7 +524,7 @@ union yyalloc
 #define YYNSTATES  103
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   292
+#define YYMAXUTOK   312
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -547,7 +567,9 @@ static const yytype_int8 yytranslate[] =
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
+      55,    56,    57
 };
 
 #if YYDEBUG
@@ -556,9 +578,9 @@ static const yytype_uint8 yyrline[] =
 {
        0,    33,    33,    37,    46,    49,    51,    55,    56,    57,
       58,    59,    60,    61,    62,    63,    64,    65,    69,    77,
-      78,    79,    84,    91,    98,   105,   112,   119,   120,   121,
-     122,   123,   124,   128,   143,   152,   167,   179,   186,   193,
-     203,   207,   211,   218,   228,   234,   237,   241
+      80,    84,    89,    97,   105,   113,   121,   128,   129,   130,
+     131,   132,   133,   137,   152,   161,   176,   188,   195,   202,
+     213,   217,   221,   228,   238,   245,   248,   251
 };
 #endif
 
@@ -578,12 +600,14 @@ static const char *const yytname[] =
   "NUMBER", "REQUIRES", "ROOT", "LET", "SYSCALL", "PRINT", "LOOP", "TIMES",
   "FROM", "TO", "WHEN", "EXEC", "REQUIRE_BIN", "ENV", "SLEEP", "EXIT",
   "ASROOT", "EQ", "NEQ", "LT", "GT", "LEQ", "GEQ", "PLUS", "MINUS", "MUL",
-  "DIV", "LBRACE", "RBRACE", "LPAREN", "RPAREN", "COMMA", "ASSIGN",
-  "$accept", "program", "requires_block", "statements", "statement",
-  "var_decl", "expr", "condition", "syscall_stmt", "exec_stmt",
-  "require_bin_stmt", "env_stmt", "sleep_stmt", "exit_stmt",
-  "as_root_block", "print_stmt", "expr_list", "loop_stmt",
-  "conditional_stmt", "syscall_args", YY_NULLPTR
+  "DIV", "LBRACE", "RBRACE", "LPAREN", "RPAREN", "COMMA", "ASSIGN", "FORK",
+  "EXECVE", "KILL", "WAIT", "OPEN", "CLOSE", "READ", "WRITE", "PIPE",
+  "CHMOD", "CHOWN", "MKDIR", "RMDIR", "STAT", "CONNECT", "BIND", "LISTEN",
+  "ACCEPT", "SOCKET", "GETENV", "$accept", "program", "requires_block",
+  "statements", "statement", "var_decl", "expr", "condition",
+  "syscall_stmt", "exec_stmt", "require_bin_stmt", "env_stmt",
+  "sleep_stmt", "exit_stmt", "as_root_block", "print_stmt", "expr_list",
+  "loop_stmt", "conditional_stmt", "syscall_args", YY_NULLPTR
 };
 
 static const char *
@@ -607,17 +631,17 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-       5,     6,    12,   -45,   -45,   -45,    92,    13,    15,   -18,
-      26,    -1,    -3,    -2,     0,    19,    20,     7,   -45,   -45,
+       7,     9,    17,   -45,   -45,   -45,    93,    15,    26,    -3,
+      28,    -1,     0,     5,     6,    20,    21,    29,   -45,   -45,
      -45,   -45,   -45,   -45,   -45,   -45,   -45,   -45,   -45,   -45,
-       3,    24,    -1,    42,   -45,   -45,   -45,    -1,    93,    34,
-      -1,    -1,    -1,    62,    63,   -45,    -1,    -1,    48,   -29,
-      75,    97,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,   -45,   105,   113,   121,    50,    51,    27,    48,
-      21,    60,   -45,    -1,    45,   -45,    48,    48,    48,    48,
-      48,    48,    48,    48,    48,    48,    54,   -45,   -45,   -45,
-     -45,   -45,   -45,    -1,   -45,    48,    91,   -45,    48,    65,
-     -45,    73,   -45
+      12,    24,    -1,    46,   -45,   -45,   -45,    -1,    94,    35,
+      -1,    -1,    -1,    63,    64,   -45,    -1,    -1,    49,   -29,
+      76,    22,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,   -45,    98,   106,   114,    51,    52,    27,    49,
+      49,   -24,   -45,    -1,    82,   -45,    49,    49,    49,    49,
+      49,    49,    49,    49,    49,    49,    55,   -45,   -45,   -45,
+     -45,   -45,   -45,   -45,    -1,    49,    92,   -45,    49,    66,
+     -45,    74,   -45
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -634,7 +658,7 @@ static const yytype_int8 yydefact[] =
        0,     0,     5,     0,     0,     0,     0,     0,     0,    18,
       46,     0,    40,     0,     0,    26,    27,    28,    29,    30,
       31,    32,    22,    23,    24,    25,     0,    34,    35,    36,
-      37,    38,    39,     0,    33,    42,     0,    44,    47,     0,
+      37,    38,    39,    33,     0,    42,     0,    44,    47,     0,
        5,     0,    43
 };
 
@@ -658,68 +682,66 @@ static const yytype_int8 yydefgoto[] =
 static const yytype_int8 yytable[] =
 {
       48,    68,    34,    35,    36,    51,    72,    73,    63,    64,
-      65,     1,     5,     4,    69,    70,    32,    30,    86,    31,
+      65,    93,    94,     1,    69,    70,     4,     5,    86,    30,
       76,    77,    78,    79,    80,    81,    82,    83,    84,    85,
-      33,    40,    41,    37,    42,     7,     8,     9,    10,    45,
-      46,    95,    11,    12,    13,    14,    15,    16,    17,    58,
-      59,    60,    61,    43,    44,    50,   101,    93,    47,    96,
-      92,    98,     7,     8,     9,    10,    62,    66,    67,    11,
-      12,    13,    14,    15,    16,    17,    58,    59,    60,    61,
-      74,     7,     8,     9,    10,    90,    91,    97,    11,    12,
-      13,    14,    15,    16,    17,    94,    99,   100,     0,     0,
-       7,     8,     9,    10,     0,     0,   102,    11,    12,    13,
-      14,    15,    16,    17,     0,    52,    53,    54,    55,    56,
-      57,    58,    59,    60,    61,    58,    59,    60,    61,     0,
-       0,     0,    75,    58,    59,    60,    61,     0,     0,     0,
-      87,    58,    59,    60,    61,     0,     0,     0,    88,    58,
-      59,    60,    61,     0,     0,     0,    89
+      31,    32,    33,    37,    40,     7,     8,     9,    10,    41,
+      42,    95,    11,    12,    13,    14,    15,    16,    17,    46,
+      58,    59,    60,    61,    43,    44,   101,    75,    47,    50,
+      92,    45,    98,     7,     8,     9,    10,    62,    66,    67,
+      11,    12,    13,    14,    15,    16,    17,    58,    59,    60,
+      61,    74,     7,     8,     9,    10,    90,    91,    97,    11,
+      12,    13,    14,    15,    16,    17,    96,    99,   100,     0,
+       0,     7,     8,     9,    10,     0,     0,   102,    11,    12,
+      13,    14,    15,    16,    17,     0,    52,    53,    54,    55,
+      56,    57,    58,    59,    60,    61,    58,    59,    60,    61,
+       0,     0,     0,    87,    58,    59,    60,    61,     0,     0,
+       0,    88,    58,    59,    60,    61,     0,     0,     0,    89
 };
 
 static const yytype_int8 yycheck[] =
 {
       32,    45,     3,     4,     5,    37,    35,    36,    40,    41,
-      42,     6,     0,     7,    46,    47,    34,     4,    62,     4,
+      42,    35,    36,     6,    46,    47,     7,     0,    62,     4,
       52,    53,    54,    55,    56,    57,    58,    59,    60,    61,
-       4,    34,    34,    34,    34,     8,     9,    10,    11,    32,
-      37,    73,    15,    16,    17,    18,    19,    20,    21,    28,
-      29,    30,    31,    34,    34,    13,   100,    36,    34,    14,
-      33,    93,     8,     9,    10,    11,    32,     5,     5,    15,
-      16,    17,    18,    19,    20,    21,    28,    29,    30,    31,
-       5,     8,     9,    10,    11,    35,    35,    33,    15,    16,
-      17,    18,    19,    20,    21,    35,     5,    32,    -1,    -1,
-       8,     9,    10,    11,    -1,    -1,    33,    15,    16,    17,
-      18,    19,    20,    21,    -1,    22,    23,    24,    25,    26,
-      27,    28,    29,    30,    31,    28,    29,    30,    31,    -1,
-      -1,    -1,    35,    28,    29,    30,    31,    -1,    -1,    -1,
-      35,    28,    29,    30,    31,    -1,    -1,    -1,    35,    28,
-      29,    30,    31,    -1,    -1,    -1,    35
+       4,    34,     4,    34,    34,     8,     9,    10,    11,    34,
+      34,    73,    15,    16,    17,    18,    19,    20,    21,    37,
+      28,    29,    30,    31,    34,    34,   100,    35,    34,    13,
+      33,    32,    94,     8,     9,    10,    11,    32,     5,     5,
+      15,    16,    17,    18,    19,    20,    21,    28,    29,    30,
+      31,     5,     8,     9,    10,    11,    35,    35,    33,    15,
+      16,    17,    18,    19,    20,    21,    14,     5,    32,    -1,
+      -1,     8,     9,    10,    11,    -1,    -1,    33,    15,    16,
+      17,    18,    19,    20,    21,    -1,    22,    23,    24,    25,
+      26,    27,    28,    29,    30,    31,    28,    29,    30,    31,
+      -1,    -1,    -1,    35,    28,    29,    30,    31,    -1,    -1,
+      -1,    35,    28,    29,    30,    31,    -1,    -1,    -1,    35
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     6,    39,    40,     7,     0,    41,     8,     9,    10,
-      11,    15,    16,    17,    18,    19,    20,    21,    42,    43,
-      46,    47,    48,    49,    50,    51,    52,    53,    55,    56,
-       4,     4,    34,     4,     3,     4,     5,    34,    44,    45,
-      34,    34,    34,    34,    34,    32,    37,    34,    44,    54,
-      13,    44,    22,    23,    24,    25,    26,    27,    28,    29,
-      30,    31,    32,    44,    44,    44,     5,     5,    41,    44,
-      44,    57,    35,    36,     5,    35,    44,    44,    44,    44,
-      44,    44,    44,    44,    44,    44,    41,    35,    35,    35,
-      35,    35,    33,    36,    35,    44,    14,    33,    44,     5,
-      32,    41,    33
+       0,     6,    59,    60,     7,     0,    61,     8,     9,    10,
+      11,    15,    16,    17,    18,    19,    20,    21,    62,    63,
+      66,    67,    68,    69,    70,    71,    72,    73,    75,    76,
+       4,     4,    34,     4,     3,     4,     5,    34,    64,    65,
+      34,    34,    34,    34,    34,    32,    37,    34,    64,    74,
+      13,    64,    22,    23,    24,    25,    26,    27,    28,    29,
+      30,    31,    32,    64,    64,    64,     5,     5,    61,    64,
+      64,    77,    35,    36,     5,    35,    64,    64,    64,    64,
+      64,    64,    64,    64,    64,    64,    61,    35,    35,    35,
+      35,    35,    33,    35,    36,    64,    14,    33,    64,     5,
+      32,    61,    33
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    38,    39,    40,    40,    41,    41,    42,    42,    42,
-      42,    42,    42,    42,    42,    42,    42,    42,    43,    44,
-      44,    44,    44,    44,    44,    44,    44,    45,    45,    45,
-      45,    45,    45,    46,    47,    48,    49,    50,    51,    52,
-      53,    54,    54,    55,    56,    57,    57,    57
+       0,    58,    59,    60,    60,    61,    61,    62,    62,    62,
+      62,    62,    62,    62,    62,    62,    62,    62,    63,    64,
+      64,    64,    64,    64,    64,    64,    64,    65,    65,    65,
+      65,    65,    65,    66,    67,    68,    69,    70,    71,    72,
+      73,    74,    74,    75,    76,    77,    77,    77
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
@@ -1203,7 +1225,7 @@ yyreduce:
             printf("[root granted]\n");
         }
     }
-#line 1207 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1229 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 18: /* var_decl: LET IDENT ASSIGN expr  */
@@ -1213,126 +1235,135 @@ yyreduce:
         free((yyvsp[-2].str));
         free((yyvsp[0].str));
     }
-#line 1217 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1239 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 19: /* expr: STRING  */
 #line 77 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-           { (yyval.str) = (yyvsp[0].str); }
-#line 1223 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+           {
+        (yyval.str) = (yyvsp[0].str);  // STRING already dynamically allocated by lexer
+    }
+#line 1247 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 20: /* expr: IDENT  */
-#line 78 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-            { (yyval.str) = strdup((yyvsp[0].str)); free((yyvsp[0].str)); }
-#line 1229 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 80 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+            {
+        (yyval.str) = strdup((yyvsp[0].str));
+        free((yyvsp[0].str));
+    }
+#line 1256 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 21: /* expr: NUMBER  */
-#line 79 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 84 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
              {
         char buf[32];
         snprintf(buf, sizeof(buf), "%d", (yyvsp[0].num));
         (yyval.str) = strdup(buf);
     }
-#line 1239 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1266 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 22: /* expr: expr PLUS expr  */
-#line 84 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 89 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                      {
         size_t len = strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2;
-        char *buf = malloc(len);
-        snprintf(buf, len, "%s+%s", (yyvsp[-2].str), (yyvsp[0].str));
+        char *buf = malloc(len + 1);
+        snprintf(buf, len + 1, "%s+%s", (yyvsp[-2].str), (yyvsp[0].str));
         (yyval.str) = buf;
-        free((yyvsp[-2].str)); free((yyvsp[0].str));
+        free((yyvsp[-2].str));
+        free((yyvsp[0].str));
     }
-#line 1251 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1279 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 23: /* expr: expr MINUS expr  */
-#line 91 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 97 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                       {
         size_t len = strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2;
-        char *buf = malloc(len);
-        snprintf(buf, len, "%s-%s", (yyvsp[-2].str), (yyvsp[0].str));
+        char *buf = malloc(len + 1);
+        snprintf(buf, len + 1, "%s-%s", (yyvsp[-2].str), (yyvsp[0].str));
         (yyval.str) = buf;
-        free((yyvsp[-2].str)); free((yyvsp[0].str));
+        free((yyvsp[-2].str));
+        free((yyvsp[0].str));
     }
-#line 1263 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1292 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 24: /* expr: expr MUL expr  */
-#line 98 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-                    {
-        size_t len = strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2;
-        char *buf = malloc(len);
-        snprintf(buf, len, "%s*%s", (yyvsp[-2].str), (yyvsp[0].str));
-        (yyval.str) = buf;
-        free((yyvsp[-2].str)); free((yyvsp[0].str));
-    }
-#line 1275 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
-    break;
-
-  case 25: /* expr: expr DIV expr  */
 #line 105 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                     {
         size_t len = strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2;
-        char *buf = malloc(len);
-        snprintf(buf, len, "%s/%s", (yyvsp[-2].str), (yyvsp[0].str));
+        char *buf = malloc(len + 1);
+        snprintf(buf, len + 1, "%s*%s", (yyvsp[-2].str), (yyvsp[0].str));
         (yyval.str) = buf;
-        free((yyvsp[-2].str)); free((yyvsp[0].str));
+        free((yyvsp[-2].str));
+        free((yyvsp[0].str));
     }
-#line 1287 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1305 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+    break;
+
+  case 25: /* expr: expr DIV expr  */
+#line 113 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+                    {
+        size_t len = strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2;
+        char *buf = malloc(len + 1);
+        snprintf(buf, len + 1, "%s/%s", (yyvsp[-2].str), (yyvsp[0].str));
+        (yyval.str) = buf;
+        free((yyvsp[-2].str));
+        free((yyvsp[0].str));
+    }
+#line 1318 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 26: /* expr: LPAREN expr RPAREN  */
-#line 112 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 121 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                          {
         (yyval.str) = strdup((yyvsp[-1].str));
         free((yyvsp[-1].str));
     }
-#line 1296 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1327 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 27: /* condition: expr EQ expr  */
-#line 119 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-                   { (yyval.str) = strdup("=="); }
-#line 1302 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 128 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+                   { free((yyvsp[-2].str)); free((yyvsp[0].str)); (yyval.str) = strdup("=="); }
+#line 1333 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 28: /* condition: expr NEQ expr  */
-#line 120 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-                    { (yyval.str) = strdup("!="); }
-#line 1308 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 129 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+                    { free((yyvsp[-2].str)); free((yyvsp[0].str)); (yyval.str) = strdup("!="); }
+#line 1339 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 29: /* condition: expr LT expr  */
-#line 121 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-                    { (yyval.str) = strdup("<"); }
-#line 1314 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 130 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+                    { free((yyvsp[-2].str)); free((yyvsp[0].str)); (yyval.str) = strdup("<"); }
+#line 1345 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 30: /* condition: expr GT expr  */
-#line 122 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-                    { (yyval.str) = strdup(">"); }
-#line 1320 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 131 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+                    { free((yyvsp[-2].str)); free((yyvsp[0].str)); (yyval.str) = strdup(">"); }
+#line 1351 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 31: /* condition: expr LEQ expr  */
-#line 123 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-                    { (yyval.str) = strdup("<="); }
-#line 1326 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 132 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+                    { free((yyvsp[-2].str)); free((yyvsp[0].str)); (yyval.str) = strdup("<="); }
+#line 1357 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 32: /* condition: expr GEQ expr  */
-#line 124 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-                    { (yyval.str) = strdup(">="); }
-#line 1332 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 133 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+                    { free((yyvsp[-2].str)); free((yyvsp[0].str)); (yyval.str) = strdup(">="); }
+#line 1363 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 33: /* syscall_stmt: SYSCALL IDENT LPAREN syscall_args RPAREN  */
-#line 128 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 137 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                              {
         if (!root_required) {
             fprintf(stderr, "[error] syscall requires 'requires root'.\n");
@@ -1345,22 +1376,22 @@ yyreduce:
         free((yyvsp[-3].str));
         if ((yyvsp[-1].str)) free((yyvsp[-1].str));
     }
-#line 1349 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1380 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 34: /* exec_stmt: EXEC LPAREN expr RPAREN  */
-#line 143 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 152 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                             {
         printf("[exec] running: %s\n", (yyvsp[-1].str));
         int ret = system((yyvsp[-1].str));
         printf("[exec return] %d\n", ret);
         free((yyvsp[-1].str));
     }
-#line 1360 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1391 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 35: /* require_bin_stmt: REQUIRE_BIN LPAREN expr RPAREN  */
-#line 152 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 161 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                    {
         char check[256];
         snprintf(check, sizeof(check), "command -v %s >/dev/null 2>&1", (yyvsp[-1].str));
@@ -1373,11 +1404,11 @@ yyreduce:
         }
         free((yyvsp[-1].str));
     }
-#line 1377 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1408 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 36: /* env_stmt: ENV LPAREN expr RPAREN  */
-#line 167 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 176 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                            {
         char *val = getenv((yyvsp[-1].str));
         if (val) {
@@ -1387,115 +1418,116 @@ yyreduce:
         }
         free((yyvsp[-1].str));
     }
-#line 1391 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1422 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 37: /* sleep_stmt: SLEEP LPAREN NUMBER RPAREN  */
-#line 179 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 188 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                {
         printf("[sleep] %d seconds\n", (yyvsp[-1].num));
         sleep((yyvsp[-1].num));
     }
-#line 1400 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1431 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 38: /* exit_stmt: EXIT LPAREN NUMBER RPAREN  */
-#line 186 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 195 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                               {
         printf("[exit] code %d\n", (yyvsp[-1].num));
         exit((yyvsp[-1].num));
     }
-#line 1409 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1440 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 39: /* as_root_block: ASROOT LBRACE statements RBRACE  */
-#line 193 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 202 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                     {
         if (geteuid() != 0) {
             fprintf(stderr, "[as_root error] not running as root.\n");
             exit(EXIT_FAILURE);
         }
         printf("[as_root block executed]\n");
+        // TODO: Implement executing nested statements here.
     }
-#line 1421 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1453 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 40: /* print_stmt: PRINT LPAREN expr_list RPAREN  */
-#line 203 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-                                  { }
-#line 1427 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 213 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+                                  { /* printing handled in expr_list */ }
+#line 1459 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 41: /* expr_list: expr  */
-#line 207 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 217 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
          {
         printf("[print] %s\n", (yyvsp[0].str));
         free((yyvsp[0].str));
     }
-#line 1436 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1468 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 42: /* expr_list: expr_list COMMA expr  */
-#line 211 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 221 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                            {
         printf("[print] %s\n", (yyvsp[0].str));
         free((yyvsp[0].str));
     }
-#line 1445 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1477 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 43: /* loop_stmt: LOOP IDENT FROM NUMBER TO NUMBER LBRACE statements RBRACE  */
-#line 218 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 228 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                                               {
         for (int i = (yyvsp[-5].num); i <= (yyvsp[-3].num); ++i) {
             printf("[loop %s=%d]\n", (yyvsp[-7].str), i);
-            // Placeholder: statements not executed per iteration in this version
+            // TODO: Execute statements inside loop per iteration.
         }
         free((yyvsp[-7].str));
     }
-#line 1457 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1489 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 44: /* conditional_stmt: WHEN condition LBRACE statements RBRACE  */
-#line 228 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 238 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                                             {
         printf("[when] condition evaluated (stubbed as true)\n");
+        // TODO: Evaluate condition properly and execute statements if true.
     }
-#line 1465 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1498 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 45: /* syscall_args: %empty  */
-#line 234 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 245 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
                 {
         (yyval.str) = strdup("");
     }
-#line 1473 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1506 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
   case 46: /* syscall_args: expr  */
-#line 237 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 248 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
            {
-        (yyval.str) = strdup((yyvsp[0].str));
-        free((yyvsp[0].str));
+        (yyval.str) = (yyvsp[0].str); // pass the string directly
     }
-#line 1482 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1514 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
-  case 47: /* syscall_args: expr COMMA expr  */
-#line 241 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
-                      {
+  case 47: /* syscall_args: syscall_args COMMA expr  */
+#line 251 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+                              {
         size_t len = strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 2;
-        char *combined = malloc(len);
-        snprintf(combined, len, "%s %s", (yyvsp[-2].str), (yyvsp[0].str));
-        (yyval.str) = combined;
+        char *combined = malloc(len + 1);
+        snprintf(combined, len + 1, "%s %s", (yyvsp[-2].str), (yyvsp[0].str));
         free((yyvsp[-2].str));
         free((yyvsp[0].str));
+        (yyval.str) = combined;
     }
-#line 1495 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1527 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
     break;
 
 
-#line 1499 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
+#line 1531 "/data/data/com.termux/files/home/Xpriv/build/xpriv.tab.c"
 
       default: break;
     }
@@ -1688,7 +1720,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 251 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
+#line 261 "/data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv.y"
 
 
 void yyerror(const char *s) {

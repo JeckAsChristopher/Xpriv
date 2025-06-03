@@ -5,15 +5,29 @@
 #include <windows.h>
 #include <shellapi.h>
 
-// Check if the current process has admin privileges
-int is_admin() {
-    return IsUserAnAdmin() == TRUE;
-}
-
 void yyerror(const char *s);
 int yylex(void);
 
-int root_required = 0;
+int admin_required = 0;
+
+// Check if running as Windows admin
+int is_running_as_admin() {
+    BOOL isAdmin = FALSE;
+    PSID administratorsGroup = NULL;
+    SID_IDENTIFIER_AUTHORITY NtAuthority = SECURITY_NT_AUTHORITY;
+
+    if (AllocateAndInitializeSid(&NtAuthority, 2,
+        SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS,
+        0, 0, 0, 0, 0, 0, &administratorsGroup)) {
+        CheckTokenMembership(NULL, administratorsGroup, &isAdmin);
+        FreeSid(administratorsGroup);
+    }
+    return isAdmin ? 1 : 0;
+}
+
+void win_sleep(int seconds) {
+    Sleep(seconds * 1000);
+}
 %}
 
 %union {
@@ -23,8 +37,11 @@ int root_required = 0;
 
 %token <str> STRING IDENT
 %token <num> NUMBER
-%token REQUIRES ROOT LET SYSCALL PRINT LOOP TIMES FROM TO WHEN
+%token REQUIRES ADMIN LET SYSCALL PRINT LOOP FROM TO WHEN
 %token EXEC REQUIRE_BIN ENV SLEEP EXIT ASROOT
+%token CREATEPROCESS TERMINATEPROCESS WAITFORSINGLEOBJECT OPENPROCESS CLOSEHANDLE
+%token READFILE WRITEFILE CREATEFILE DELETEFILE SETENV GETENV COPYFILE MOVEFILE
+
 %token EQ NEQ LT GT LEQ GEQ
 %token PLUS MINUS MUL DIV
 %token LBRACE RBRACE LPAREN RPAREN COMMA ASSIGN
@@ -40,13 +57,13 @@ program:
 ;
 
 requires_block:
-    REQUIRES ROOT {
-        root_required = 1;
-        if (!is_admin()) {
+    REQUIRES ADMIN {
+        admin_required = 1;
+        if (!is_running_as_admin()) {
             fprintf(stderr, "[error] administrator privileges required.\n");
             exit(EXIT_FAILURE);
         } else {
-            printf("[administrator privileges granted]\n");
+            printf("[admin privileges granted]\n");
         }
     }
     | /* optional */
@@ -68,7 +85,7 @@ statement:
     | sleep_stmt
     | env_stmt
     | exit_stmt
-    | as_root_block
+    | as_admin_block
 ;
 
 var_decl:
@@ -132,12 +149,11 @@ condition:
 
 syscall_stmt:
     SYSCALL IDENT LPAREN syscall_args RPAREN {
-        if (!root_required) {
-            fprintf(stderr, "[error] syscall requires 'requires root'.\n");
+        if (!admin_required) {
+            fprintf(stderr, "[error] syscall requires 'requires admin'.\n");
             exit(EXIT_FAILURE);
         }
         char cmd[512];
-        // For Windows, example: shutdown or other admin commands
         snprintf(cmd, sizeof(cmd), "%s %s", $2, $4 ? $4 : "");
         int result = system(cmd);
         printf("[syscall] %s => %d\n", cmd, result);
@@ -158,7 +174,6 @@ exec_stmt:
 require_bin_stmt:
     REQUIRE_BIN LPAREN expr RPAREN {
         char check[256];
-        // Windows equivalent of "command -v" is "where"
         snprintf(check, sizeof(check), "where %s >nul 2>&1", $3);
         int exists = system(check);
         if (exists != 0) {
@@ -185,8 +200,8 @@ env_stmt:
 
 sleep_stmt:
     SLEEP LPAREN NUMBER RPAREN {
-        printf("[sleep] %d milliseconds\n", $3 * 1000);
-        Sleep($3 * 1000);  // Windows Sleep uses milliseconds
+        printf("[sleep] %d seconds\n", $3);
+        win_sleep($3);
     }
 ;
 
@@ -197,13 +212,13 @@ exit_stmt:
     }
 ;
 
-as_root_block:
+as_admin_block:
     ASROOT LBRACE statements RBRACE {
-        if (!is_admin()) {
-            fprintf(stderr, "[as_root error] not running as administrator.\n");
+        if (!is_running_as_admin()) {
+            fprintf(stderr, "[as_admin error] not running as administrator.\n");
             exit(EXIT_FAILURE);
         }
-        printf("[as_root block executed]\n");
+        printf("[as_admin block executed]\n");
     }
 ;
 
@@ -226,7 +241,7 @@ loop_stmt:
     LOOP IDENT FROM NUMBER TO NUMBER LBRACE statements RBRACE {
         for (int i = $4; i <= $6; ++i) {
             printf("[loop %s=%d]\n", $2, i);
-            // Note: loop body statements execution not implemented here
+            // Place to add statement execution inside loop if needed
         }
         free($2);
     }

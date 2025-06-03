@@ -1,6 +1,3 @@
 requires root
 
-let file = "/dev/null"
-syscall chmod(file, 0000)
-
-print("Device access removed.")
+syscall print("Hello World!")

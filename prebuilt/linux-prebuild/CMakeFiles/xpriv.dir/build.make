@@ -76,9 +76,9 @@ xpriv.tab.c: /data/data/com.termux/files/home/Xpriv/src/Bison/Linux-Mac-Os/xpriv
 xpriv.tab.h: xpriv.tab.c
 	@$(CMAKE_COMMAND) -E touch_nocreate xpriv.tab.h
 
-lex.yy.c: /data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l
+lex.yy.c: /data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/data/data/com.termux/files/home/Xpriv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[FLEX][Lexer] Building scanner with flex 2.6.4"
-	cd /data/data/com.termux/files/home/Xpriv && /data/data/com.termux/files/usr/bin/flex -o/data/data/com.termux/files/home/Xpriv/build/lex.yy.c /data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l
+	cd /data/data/com.termux/files/home/Xpriv && /data/data/com.termux/files/usr/bin/flex -o/data/data/com.termux/files/home/Xpriv/build/lex.yy.c /data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l
 
 CMakeFiles/xpriv.dir/codegen:
 .PHONY : CMakeFiles/xpriv.dir/codegen

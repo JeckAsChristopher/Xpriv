@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+#include <unistd.h>  // For geteuid() and sleep()
 
 void yyerror(const char *s);
 int yylex(void);
@@ -22,9 +22,9 @@ int root_required = 0;
 %token EQ NEQ LT GT LEQ GEQ
 %token PLUS MINUS MUL DIV
 %token LBRACE RBRACE LPAREN RPAREN COMMA ASSIGN
+%token FORK EXECVE KILL WAIT OPEN CLOSE READ WRITE PIPE CHMOD CHOWN MKDIR RMDIR STAT CONNECT BIND LISTEN ACCEPT SOCKET GETENV
 
 %type <str> expr syscall_args condition
-
 %start program
 
 %%
@@ -43,7 +43,7 @@ requires_block:
             printf("[root granted]\n");
         }
     }
-    | /* optional */
+    | /* empty */
 ;
 
 statements:
@@ -74,8 +74,13 @@ var_decl:
 ;
 
 expr:
-    STRING { $$ = $1; }
-    | IDENT { $$ = strdup($1); free($1); }
+    STRING {
+        $$ = $1;  // STRING already dynamically allocated by lexer
+    }
+    | IDENT {
+        $$ = strdup($1);
+        free($1);
+    }
     | NUMBER {
         char buf[32];
         snprintf(buf, sizeof(buf), "%d", $1);
@@ -83,31 +88,35 @@ expr:
     }
     | expr PLUS expr {
         size_t len = strlen($1) + strlen($3) + 2;
-        char *buf = malloc(len);
-        snprintf(buf, len, "%s+%s", $1, $3);
+        char *buf = malloc(len + 1);
+        snprintf(buf, len + 1, "%s+%s", $1, $3);
         $$ = buf;
-        free($1); free($3);
+        free($1);
+        free($3);
     }
     | expr MINUS expr {
         size_t len = strlen($1) + strlen($3) + 2;
-        char *buf = malloc(len);
-        snprintf(buf, len, "%s-%s", $1, $3);
+        char *buf = malloc(len + 1);
+        snprintf(buf, len + 1, "%s-%s", $1, $3);
         $$ = buf;
-        free($1); free($3);
+        free($1);
+        free($3);
     }
     | expr MUL expr {
         size_t len = strlen($1) + strlen($3) + 2;
-        char *buf = malloc(len);
-        snprintf(buf, len, "%s*%s", $1, $3);
+        char *buf = malloc(len + 1);
+        snprintf(buf, len + 1, "%s*%s", $1, $3);
         $$ = buf;
-        free($1); free($3);
+        free($1);
+        free($3);
     }
     | expr DIV expr {
         size_t len = strlen($1) + strlen($3) + 2;
-        char *buf = malloc(len);
-        snprintf(buf, len, "%s/%s", $1, $3);
+        char *buf = malloc(len + 1);
+        snprintf(buf, len + 1, "%s/%s", $1, $3);
         $$ = buf;
-        free($1); free($3);
+        free($1);
+        free($3);
     }
     | LPAREN expr RPAREN {
         $$ = strdup($2);
@@ -116,12 +125,12 @@ expr:
 ;
 
 condition:
-    expr EQ expr   { $$ = strdup("=="); }
-    | expr NEQ expr { $$ = strdup("!="); }
-    | expr LT expr  { $$ = strdup("<"); }
-    | expr GT expr  { $$ = strdup(">"); }
-    | expr LEQ expr { $$ = strdup("<="); }
-    | expr GEQ expr { $$ = strdup(">="); }
+    expr EQ expr   { free($1); free($3); $$ = strdup("=="); }
+    | expr NEQ expr { free($1); free($3); $$ = strdup("!="); }
+    | expr LT expr  { free($1); free($3); $$ = strdup("<"); }
+    | expr GT expr  { free($1); free($3); $$ = strdup(">"); }
+    | expr LEQ expr { free($1); free($3); $$ = strdup("<="); }
+    | expr GEQ expr { free($1); free($3); $$ = strdup(">="); }
 ;
 
 syscall_stmt:
@@ -196,11 +205,12 @@ as_root_block:
             exit(EXIT_FAILURE);
         }
         printf("[as_root block executed]\n");
+        // TODO: Implement executing nested statements here.
     }
 ;
 
 print_stmt:
-    PRINT LPAREN expr_list RPAREN { }
+    PRINT LPAREN expr_list RPAREN { /* printing handled in expr_list */ }
 ;
 
 expr_list:
@@ -218,7 +228,7 @@ loop_stmt:
     LOOP IDENT FROM NUMBER TO NUMBER LBRACE statements RBRACE {
         for (int i = $4; i <= $6; ++i) {
             printf("[loop %s=%d]\n", $2, i);
-            // Placeholder: statements not executed per iteration in this version
+            // TODO: Execute statements inside loop per iteration.
         }
         free($2);
     }
@@ -227,6 +237,7 @@ loop_stmt:
 conditional_stmt:
     WHEN condition LBRACE statements RBRACE {
         printf("[when] condition evaluated (stubbed as true)\n");
+        // TODO: Evaluate condition properly and execute statements if true.
     }
 ;
 
@@ -235,16 +246,15 @@ syscall_args:
         $$ = strdup("");
     }
     | expr {
-        $$ = strdup($1);
-        free($1);
+        $$ = $1; // pass the string directly
     }
-    | expr COMMA expr {
+    | syscall_args COMMA expr {
         size_t len = strlen($1) + strlen($3) + 2;
-        char *combined = malloc(len);
-        snprintf(combined, len, "%s %s", $1, $3);
-        $$ = combined;
+        char *combined = malloc(len + 1);
+        snprintf(combined, len + 1, "%s %s", $1, $3);
         free($1);
         free($3);
+        $$ = combined;
     }
 ;
 

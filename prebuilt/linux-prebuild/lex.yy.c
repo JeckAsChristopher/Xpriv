@@ -355,8 +355,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 38
-#define YY_END_OF_BUFFER 39
+#define YY_NUM_RULES 58
+#define YY_END_OF_BUFFER 59
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -364,19 +364,27 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[97] =
+static const flex_int16_t yy_accept[177] =
     {   0,
-        0,    0,   39,   37,   36,   36,   37,   37,   28,   29,
-       24,   22,   30,   23,   25,   33,   20,   31,   21,   34,
-       34,   34,   34,   34,   34,   34,   34,   34,   34,   26,
-       27,   36,   17,    0,   32,   35,   33,   18,   16,   19,
-       34,   34,   34,   34,   34,   34,   34,   34,   34,   34,
-       34,   34,    8,   34,   35,   34,   12,   34,   34,   34,
-        3,   34,   34,   34,   34,   34,   34,   34,   34,   10,
-       14,    7,    6,   34,   34,    2,   34,   34,    9,   34,
-        5,   34,   13,   34,   34,   34,   34,   15,   34,    4,
-       34,    1,   34,   34,   11,    0
+        0,    0,   59,   57,   56,   56,   57,   57,   48,   49,
+       44,   42,   50,   43,   45,   53,   40,   51,   41,   54,
+       54,   54,   54,   54,   54,   54,   54,   54,   54,   54,
+       54,   54,   54,   54,   54,   46,   47,   56,   37,    0,
+       52,   55,   53,   38,   36,   39,   54,   54,   54,   54,
+       54,   54,   54,   54,   54,   54,   54,   54,   54,   54,
+       54,   54,   54,   54,   54,   54,   54,   54,   54,   54,
+       54,   54,   54,    8,   54,   54,   54,   55,   54,   54,
+       54,   54,   54,   54,   54,   12,   54,   54,   54,   54,
+       54,   54,    3,   54,   54,   54,   54,   54,   54,   54,
 
+       54,   54,   54,   54,   54,   54,   54,   54,   54,   54,
+       54,   54,   31,   54,   54,   54,   54,   10,   14,   16,
+        7,   54,   18,   54,    6,   54,   20,   24,   54,   22,
+       54,   54,    2,   54,   54,   29,   54,   19,    9,   54,
+       54,   54,   25,   26,   21,   54,   54,   54,   54,   27,
+        5,   54,   28,   13,   54,   54,   23,   33,   54,   54,
+       17,   35,   32,   54,   34,   54,   15,   30,   54,    4,
+       54,    1,   54,   54,   11,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -390,11 +398,11 @@ static const YY_CHAR yy_ec[256] =
        15,   16,    1,    1,   17,   17,   17,   17,   17,   17,
        17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
        17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
-        1,    1,    1,    1,   18,    1,   19,   20,   21,   17,
+        1,    1,    1,    1,   18,    1,   19,   20,   21,   22,
 
-       22,   23,   17,   24,   25,   17,   17,   26,   27,   28,
-       29,   30,   31,   32,   33,   34,   35,   36,   37,   38,
-       39,   17,   40,    1,   41,    1,    1,    1,    1,    1,
+       23,   24,   25,   26,   27,   17,   28,   29,   30,   31,
+       32,   33,   34,   35,   36,   37,   38,   39,   40,   41,
+       42,   17,   43,    1,   44,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -411,85 +419,119 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[42] =
+static const YY_CHAR yy_meta[45] =
     {   0,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    3,    1,    1,    1,    3,    3,    3,    3,
         3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    1,
-        1
+        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
+        3,    3,    1,    1
     } ;
 
-static const flex_int16_t yy_base[100] =
+static const flex_int16_t yy_base[180] =
     {   0,
-        0,    0,  116,  117,   40,   42,  100,  109,  117,  117,
-      117,  117,  117,  117,  101,   99,   96,   95,   94,    0,
-       75,   18,   75,   25,   74,   26,   23,   76,   80,  117,
-      117,   48,  117,   98,  117,    0,   89,  117,  117,  117,
-        0,   83,   64,   35,   70,   64,   68,   71,   64,   65,
-       71,   59,    0,   69,    0,   58,    0,   68,   54,   60,
-        0,   56,   57,   49,   49,   60,   60,   52,   50,    0,
-        0,    0,    0,   44,   52,    0,   46,   56,    0,   45,
-        0,   40,    0,   40,   31,   42,   37,    0,   34,    0,
-       41,    0,   34,   30,    0,  117,   67,   50,   70
+        0,    0,  193,  194,   43,   45,  177,  186,  194,  194,
+      194,  194,  194,  194,  178,  176,  173,  172,  171,    0,
+       28,  158,   24,   20,   20,  161,  156,   31,  154,  148,
+       30,   36,   38,  148,   43,  194,  194,   69,  194,  174,
+      194,    0,  165,  194,  194,  194,    0,  156,  158,  144,
+       44,  142,  142,  133,   50,  136,  138,  132,  139,  130,
+      130,  133,  142,  140,  129,  134,   60,  138,  127,  135,
+      136,  137,  119,    0,  127,  130,  125,    0,  128,  115,
+      127,  116,  107,  110,  114,    0,  123,  106,  114,  111,
+      117,  110,    0,  101,  104,  109,  104,  111,  102,  110,
 
+       93,  103,   92,  105,   99,   89,  104,   87,   92,   85,
+       88,   88,    0,   97,   87,   94,   93,   76,    0,    0,
+        0,   83,    0,   90,    0,   77,    0,    0,   74,    0,
+       83,   74,    0,   75,   84,    0,   87,    0,    0,   81,
+       61,   65,    0,    0,    0,   75,   72,   54,   61,    0,
+        0,   56,    0,    0,   53,   60,    0,    0,   51,   50,
+        0,    0,    0,   63,    0,   56,    0,    0,   63,    0,
+       64,    0,   56,   51,    0,  194,   99,   57,  102
     } ;
 
-static const flex_int16_t yy_def[100] =
+static const flex_int16_t yy_def[180] =
     {   0,
-       96,    1,   96,   96,   96,   96,   96,   97,   96,   96,
-       96,   96,   96,   96,   96,   96,   96,   96,   96,   98,
-       98,   98,   98,   98,   98,   98,   98,   98,   98,   96,
-       96,   96,   96,   97,   96,   99,   96,   96,   96,   96,
-       98,   98,   98,   98,   98,   98,   98,   98,   98,   98,
-       98,   98,   98,   98,   99,   98,   98,   98,   98,   98,
-       98,   98,   98,   98,   98,   98,   98,   98,   98,   98,
-       98,   98,   98,   98,   98,   98,   98,   98,   98,   98,
-       98,   98,   98,   98,   98,   98,   98,   98,   98,   98,
-       98,   98,   98,   98,   98,    0,   96,   96,   96
+      176,    1,  176,  176,  176,  176,  176,  177,  176,  176,
+      176,  176,  176,  176,  176,  176,  176,  176,  176,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  176,  176,  176,  176,  177,
+      176,  179,  176,  176,  176,  176,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  179,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
 
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,  178,  178,  178,  178,  178,
+      178,  178,  178,  178,  178,    0,  176,  176,  176
     } ;
 
-static const flex_int16_t yy_nxt[159] =
+static const flex_int16_t yy_nxt[239] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
-       14,   15,   16,   17,   18,   19,   20,   20,   21,   20,
-       20,   22,   23,   20,   20,   24,   20,   20,   20,   25,
-       20,   26,   27,   28,   20,   20,   29,   20,   20,   30,
-       31,   32,   32,   32,   32,   43,   46,   49,   51,   32,
-       32,   91,   41,   47,   50,   44,   58,   95,   94,   59,
-       93,   52,   90,   89,   88,   87,   92,   34,   34,   34,
-       55,   86,   55,   85,   84,   83,   82,   81,   80,   79,
-       78,   77,   76,   75,   74,   73,   72,   71,   70,   69,
-       68,   67,   66,   65,   64,   63,   62,   61,   60,   57,
+       14,   15,   16,   17,   18,   19,   20,   20,   21,   22,
+       23,   20,   24,   25,   26,   20,   20,   27,   28,   29,
+       20,   30,   31,   20,   32,   33,   34,   20,   20,   35,
+       20,   20,   36,   37,   38,   38,   38,   38,   48,   51,
+       54,   56,   52,   60,   57,   53,   65,   61,   67,   47,
+       55,   75,   62,   49,   66,   68,   70,   69,   76,   71,
+       38,   38,   87,   82,   72,   83,   88,   77,  100,   73,
+      171,  175,  174,  173,  170,  169,  168,  167,  166,  165,
+      164,  163,  162,  101,  161,  160,  159,  158,  172,   40,
 
-       56,   37,   35,   54,   53,   48,   45,   42,   40,   39,
-       38,   37,   36,   35,   33,   96,    3,   96,   96,   96,
-       96,   96,   96,   96,   96,   96,   96,   96,   96,   96,
-       96,   96,   96,   96,   96,   96,   96,   96,   96,   96,
-       96,   96,   96,   96,   96,   96,   96,   96,   96,   96,
-       96,   96,   96,   96,   96,   96,   96,   96
+       40,   40,   78,  157,   78,  156,  155,  154,  153,  152,
+      151,  150,  149,  148,  147,  146,  145,  144,  143,  142,
+      141,  140,  139,  138,  137,  136,  135,  134,  133,  132,
+      131,  130,  129,  128,  127,  126,  125,  124,  123,  122,
+      121,  120,  119,  118,  117,  116,  115,  114,  113,  112,
+      111,  110,  109,  108,  107,  106,  105,  104,  103,  102,
+       99,   98,   97,   96,   95,   94,   93,   92,   91,   90,
+       89,   86,   85,   84,   81,   80,   79,   43,   41,   74,
+       64,   63,   59,   58,   50,   46,   45,   44,   43,   42,
+       41,   39,  176,    3,  176,  176,  176,  176,  176,  176,
+
+      176,  176,  176,  176,  176,  176,  176,  176,  176,  176,
+      176,  176,  176,  176,  176,  176,  176,  176,  176,  176,
+      176,  176,  176,  176,  176,  176,  176,  176,  176,  176,
+      176,  176,  176,  176,  176,  176,  176,  176
     } ;
 
-static const flex_int16_t yy_chk[159] =
+static const flex_int16_t yy_chk[239] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    5,    5,    6,    6,   22,   24,   26,   27,   32,
-       32,   89,   98,   24,   26,   22,   44,   94,   93,   44,
-       91,   27,   87,   86,   85,   84,   89,   97,   97,   97,
-       99,   82,   99,   80,   78,   77,   75,   74,   69,   68,
-       67,   66,   65,   64,   63,   62,   60,   59,   58,   56,
-       54,   52,   51,   50,   49,   48,   47,   46,   45,   43,
+        1,    1,    1,    1,    5,    5,    6,    6,   21,   23,
+       24,   25,   23,   28,   25,   23,   31,   28,   32,  178,
+       24,   35,   28,   21,   31,   32,   33,   32,   35,   33,
+       38,   38,   55,   51,   33,   51,   55,   35,   67,   33,
+      169,  174,  173,  171,  166,  164,  160,  159,  156,  155,
+      152,  149,  148,   67,  147,  146,  142,  141,  169,  177,
 
-       42,   37,   34,   29,   28,   25,   23,   21,   19,   18,
-       17,   16,   15,    8,    7,    3,   96,   96,   96,   96,
-       96,   96,   96,   96,   96,   96,   96,   96,   96,   96,
-       96,   96,   96,   96,   96,   96,   96,   96,   96,   96,
-       96,   96,   96,   96,   96,   96,   96,   96,   96,   96,
-       96,   96,   96,   96,   96,   96,   96,   96
+      177,  177,  179,  140,  179,  137,  135,  134,  132,  131,
+      129,  126,  124,  122,  118,  117,  116,  115,  114,  112,
+      111,  110,  109,  108,  107,  106,  105,  104,  103,  102,
+      101,  100,   99,   98,   97,   96,   95,   94,   92,   91,
+       90,   89,   88,   87,   85,   84,   83,   82,   81,   80,
+       79,   77,   76,   75,   73,   72,   71,   70,   69,   68,
+       66,   65,   64,   63,   62,   61,   60,   59,   58,   57,
+       56,   54,   53,   52,   50,   49,   48,   43,   40,   34,
+       30,   29,   27,   26,   22,   19,   18,   17,   16,   15,
+        8,    7,    3,  176,  176,  176,  176,  176,  176,  176,
+
+      176,  176,  176,  176,  176,  176,  176,  176,  176,  176,
+      176,  176,  176,  176,  176,  176,  176,  176,  176,  176,
+      176,  176,  176,  176,  176,  176,  176,  176,  176,  176,
+      176,  176,  176,  176,  176,  176,  176,  176
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -506,12 +548,15 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-#line 3 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 1 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+#line 4 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 #include "xpriv.tab.h"
 #include <string.h>
-#line 513 "/data/data/com.termux/files/home/Xpriv/build/lex.yy.c"
-#line 514 "/data/data/com.termux/files/home/Xpriv/build/lex.yy.c"
+#include <stdlib.h>
+
+extern YYSTYPE yylval;
+#line 558 "/data/data/com.termux/files/home/Xpriv/build/lex.yy.c"
+#line 559 "/data/data/com.termux/files/home/Xpriv/build/lex.yy.c"
 
 #define INITIAL 0
 
@@ -728,10 +773,10 @@ YY_DECL
 		}
 
 	{
-#line 7 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 11 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 
 
-#line 734 "/data/data/com.termux/files/home/Xpriv/build/lex.yy.c"
+#line 779 "/data/data/com.termux/files/home/Xpriv/build/lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -758,13 +803,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 97 )
+				if ( yy_current_state >= 177 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 117 );
+		while ( yy_base[yy_current_state] != 194 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -790,197 +835,314 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 13 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return REQUIRES; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 10 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 14 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return ROOT; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 11 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 15 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return LET; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 12 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 16 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return SYSCALL; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 13 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 17 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return PRINT; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 14 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 18 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return LOOP; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 15 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 19 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return FROM; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 16 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 20 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return TO; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 17 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 21 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return WHEN; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 18 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 22 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return EXEC; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 19 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 23 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return REQUIRE_BIN; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 20 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 24 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return ENV; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 21 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 25 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return SLEEP; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 22 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 26 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return EXIT; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 23 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 27 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 { return ASROOT; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 24 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return EQ; }
+#line 28 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return FORK; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 25 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return NEQ; }
+#line 29 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return EXECVE; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 26 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return LEQ; }
+#line 30 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return KILL; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 27 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return GEQ; }
+#line 31 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return WAIT; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 28 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return LT; }
+#line 32 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return OPEN; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 29 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return GT; }
+#line 33 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return CLOSE; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 31 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return PLUS; }
+#line 34 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return READ; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 32 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return MINUS; }
+#line 35 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return WRITE; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 33 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return MUL; }
+#line 36 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return PIPE; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 34 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return DIV; }
+#line 37 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return CHMOD; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 36 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return LBRACE; }
+#line 38 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return CHOWN; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 37 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return RBRACE; }
+#line 39 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return MKDIR; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 38 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return LPAREN; }
+#line 40 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return RMDIR; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 39 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return RPAREN; }
+#line 41 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return STAT; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 40 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return COMMA; }
+#line 42 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return CONNECT; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 41 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return ASSIGN; }
+#line 43 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return BIND; }
 	YY_BREAK
 case 32:
-/* rule 32 can match eol */
 YY_RULE_SETUP
-#line 43 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ yylval.str = strdup(yytext); return STRING; }
+#line 44 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return LISTEN; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 44 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ yylval.num = atoi(yytext); return NUMBER; }
+#line 45 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return ACCEPT; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 45 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ yylval.str = strdup(yytext); return IDENT; }
+#line 46 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return SOCKET; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 47 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ /* ignore single-line comments */ }
+#line 47 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return GETENV; }
 	YY_BREAK
 case 36:
-/* rule 36 can match eol */
 YY_RULE_SETUP
-#line 49 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ /* skip whitespace */ }
+#line 49 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return EQ; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 50 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
-{ return *yytext; }
+#line 50 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return NEQ; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 52 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 51 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return LEQ; }
+	YY_BREAK
+case 39:
+YY_RULE_SETUP
+#line 52 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return GEQ; }
+	YY_BREAK
+case 40:
+YY_RULE_SETUP
+#line 53 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return LT; }
+	YY_BREAK
+case 41:
+YY_RULE_SETUP
+#line 54 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return GT; }
+	YY_BREAK
+case 42:
+YY_RULE_SETUP
+#line 56 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return PLUS; }
+	YY_BREAK
+case 43:
+YY_RULE_SETUP
+#line 57 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return MINUS; }
+	YY_BREAK
+case 44:
+YY_RULE_SETUP
+#line 58 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return MUL; }
+	YY_BREAK
+case 45:
+YY_RULE_SETUP
+#line 59 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return DIV; }
+	YY_BREAK
+case 46:
+YY_RULE_SETUP
+#line 61 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return LBRACE; }
+	YY_BREAK
+case 47:
+YY_RULE_SETUP
+#line 62 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return RBRACE; }
+	YY_BREAK
+case 48:
+YY_RULE_SETUP
+#line 63 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return LPAREN; }
+	YY_BREAK
+case 49:
+YY_RULE_SETUP
+#line 64 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return RPAREN; }
+	YY_BREAK
+case 50:
+YY_RULE_SETUP
+#line 65 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return COMMA; }
+	YY_BREAK
+case 51:
+YY_RULE_SETUP
+#line 66 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return ASSIGN; }
+	YY_BREAK
+case 52:
+/* rule 52 can match eol */
+YY_RULE_SETUP
+#line 68 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{
+                  int len = yyleng - 2; // exclude quotes
+                  char *str = (char *)malloc(len + 1);
+                  if (!str) {
+                    fprintf(stderr, "Out of memory\n");
+                    exit(1);
+                  }
+                  strncpy(str, yytext + 1, len);
+                  str[len] = '\0';
+                  yylval.str = str;
+                  return STRING;
+                }
+	YY_BREAK
+case 53:
+YY_RULE_SETUP
+#line 81 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{
+                  yylval.num = atoi(yytext);
+                  return NUMBER;
+                }
+	YY_BREAK
+case 54:
+YY_RULE_SETUP
+#line 86 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{
+                          yylval.str = strdup(yytext);
+                          return IDENT;
+                        }
+	YY_BREAK
+case 55:
+YY_RULE_SETUP
+#line 91 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ /* skip comment */ }
+	YY_BREAK
+case 56:
+/* rule 56 can match eol */
+YY_RULE_SETUP
+#line 93 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ /* skip whitespace */ }
+	YY_BREAK
+case 57:
+YY_RULE_SETUP
+#line 95 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
+{ return *yytext; }
+	YY_BREAK
+case 58:
+YY_RULE_SETUP
+#line 97 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 ECHO;
 	YY_BREAK
-#line 983 "/data/data/com.termux/files/home/Xpriv/build/lex.yy.c"
+#line 1145 "/data/data/com.termux/files/home/Xpriv/build/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1277,7 +1439,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 97 )
+			if ( yy_current_state >= 177 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1305,11 +1467,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 97 )
+		if ( yy_current_state >= 177 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 96);
+	yy_is_jam = (yy_current_state == 176);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1985,6 +2147,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 52 "/data/data/com.termux/files/home/Xpriv/src/Flex/xpriv.l"
+#line 97 "/data/data/com.termux/files/home/Xpriv/src/Flex/Linux-Unix/xpriv.l"
 
 

@@ -8,7 +8,7 @@ set(ETC_DIR ${SRC_DIR}/etc)
 find_package(FLEX REQUIRED)
 find_package(BISON REQUIRED)
 
-set(FLEX_FILE ${SRC_DIR}/Flex/xpriv.l)
+set(FLEX_FILE ${SRC_DIR}/Flex/Windows/xpriv.l)
 set(BISON_FILE ${SRC_DIR}/Bison/Windows/xpriv.y)
 set(GENERATED_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
